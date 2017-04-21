@@ -14,18 +14,18 @@ public interface RemoteInterface extends Remote {
 	
 	//() throws RemoteException;
 	
-	public void validerCreationTableau(Tableau t) throws RemoteException;
+	public void validerCreationTableau(Tableau t, Ustandard u) throws RemoteException;
 	
-	public void validerModificationTableau(Tableau t, String s) throws RemoteException;
+	public void validerModificationTableau(Tableau t, String s, Ustandard u) throws RemoteException;
 	
 	public void validerPartageTableau(Tableau t, Ustandard u) throws RemoteException;
 		
 	
-	public void validerCreationEpingle(Epingle e) throws RemoteException;
+	public void validerCreationEpingle(Epingle e, Ustandard u) throws RemoteException;
 	
-	public void validerAjoutEpingle(Epingle e, Tableau t) throws RemoteException;
+	public void validerAjoutEpingle(Epingle e, Tableau t, Ustandard u) throws RemoteException;
 	
-	public void validerSuppressionEpingle(Epingle e, Tableau t) throws RemoteException;
+	public void validerSuppressionEpingle(Epingle e, Tableau t, Ustandard u) throws RemoteException;
 	
 	/*
 	// TODO

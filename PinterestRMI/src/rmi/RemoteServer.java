@@ -41,34 +41,39 @@ public class RemoteServer implements RemoteInterface {
 	}
 
 	@Override
-	public void validerCreationTableau(Tableau t) {
+	public void validerCreationTableau(Tableau t, Ustandard u) {
 		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide la creation du tableau "+t.nom);
 	}
 
 	@Override
-	public void validerModificationTableau(Tableau t, String s) {
+	public void validerModificationTableau(Tableau t, String s, Ustandard u) {
+		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide la modification du tableau "+t.nom);
 	}
 
 	@Override
 	public void validerPartageTableau(Tableau t, Ustandard u) {
+		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide le partage du tableau "+t.nom+" avec "+u.nom);
 	}
 
 	@Override
-	public void validerCreationEpingle(Epingle e) {
+	public void validerCreationEpingle(Epingle e, Ustandard u) {
+		serveur.enregistrerChangements(u);
 		serveur.epingles.add(e);
 		System.out.println("Le serveur valide la creation de l'epingle "+e.numero);
 	}
 
 	@Override
-	public void validerAjoutEpingle(Epingle e, Tableau t) {
+	public void validerAjoutEpingle(Epingle e, Tableau t, Ustandard u) {
+		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide l'ajout de l'epingle "+e.numero +" du tableau "+t.nom);
 	}
 
 	@Override
-	public void validerSuppressionEpingle(Epingle e, Tableau t) {
+	public void validerSuppressionEpingle(Epingle e, Tableau t, Ustandard u) {
+		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide la suppression de l'epingle "+e.numero +" du tableau "+t.nom);
 	}
 }

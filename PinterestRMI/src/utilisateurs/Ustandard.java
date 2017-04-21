@@ -36,7 +36,7 @@ public class Ustandard extends Utilisateur{
 			this.tableaux.add(t);
 			t.administrateurs.add(this);
 			System.out.println(this.nom + " a cree le tableau " + t.numero);
-			this.serveur.validerCreationTableau(t);
+			this.serveur.validerCreationTableau(t, this);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -47,7 +47,7 @@ public class Ustandard extends Utilisateur{
 			String n = t.nom;
 			t.modifierNom();
 			System.out.println(this.nom + " a change le nom du tableau " + n + " en " + t.nom);
-			this.serveur.validerModificationTableau(t, t.nom);
+			this.serveur.validerModificationTableau(t, t.nom, this);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
