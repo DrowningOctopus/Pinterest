@@ -32,6 +32,11 @@ public class RemoteServer implements RemoteInterface {
 	}
 
 	@Override
+	public void repererClient(Ustandard u) {
+		
+	}
+
+	@Override
 	public void validerCreationTableau(Tableau t) {
 		// TODO Auto-generated method stub
 		
