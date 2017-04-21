@@ -11,12 +11,10 @@ public class Epingle {
 	public int numero;
 	public String commentaire;
 	public Ustandard createur;
-	public ArrayList<Tableau> tableaux;
 	
-	public Epingle(int n, String c, Ustandard cr, ArrayList<Tableau> t) {
+	public Epingle(int n, String c, Ustandard cr) {
 		this.numero = n;
 		this.commentaire = c;
 		this.createur  = cr;
-		this.tableaux = t;
 	}
 }

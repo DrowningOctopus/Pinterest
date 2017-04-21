@@ -7,6 +7,11 @@ import pinterest.Epingle;
 import pinterest.Tableau;
 import utilisateurs.Ustandard;
 
+/*
+Il faut imperativement, pour le DM, des echanges dans les deux sens : il faut donc trouver au moins une
+fonctionnalite necessitant que le serveur interroge le client.
+*/
+
 public interface RemoteInterface extends Remote {
 	public String check() throws RemoteException;
 	public void repererClient(Ustandard u) throws RemoteException;

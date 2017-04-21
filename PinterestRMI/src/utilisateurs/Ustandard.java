@@ -65,7 +65,7 @@ public class Ustandard extends Utilisateur{
 	private void creerEpingle() {
 		try {
 			int numE = this.serveur.donnerNbEpingles();
-			Epingle e = new Epingle(numE, "", this, new ArrayList<Tableau>());
+			Epingle e = new Epingle(numE, "", this);
 			this.serveur.validerCreationEpingle(e, this);
 			if (this.tableaux.size() > 0 && (int)(Math.random()*2) == 0) {
 				int numT = (int)(Math.random()*this.tableaux.size());
