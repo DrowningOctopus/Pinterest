@@ -2,8 +2,12 @@ package rmi;
 
 import java.rmi.Remote;
 
+import pinterest.Tableau;
+
 public interface RemoteInterface extends Remote {
 	//() throws RemoteException;
+	
+	public void validerCreationTableau(Tableau t);
 	
 	/*
 	// TODO
