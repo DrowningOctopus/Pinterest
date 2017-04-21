@@ -105,6 +105,7 @@ public class Ustandard extends Utilisateur{
 	}
 	
 	/* Methodes de messagerie */
+	/*
 	private void ecrireMessage(Ustandard destinataire) {
 		Message message = new Message(this, destinataire);
 		System.out.println(this.nom+" a ecrit le message '"+message+"' pour "+destinataire.nom);
@@ -118,6 +119,7 @@ public class Ustandard extends Utilisateur{
 	public void recevoirNotifLu(Utilisateur destinataire) {
 		System.out.println(this.nom+" a recu une notification 'Lu' de "+destinataire.nom);
 	}
+	*/
 	
 	/**
 	 * L'utilisateur a le choix entre diverses actions :
@@ -140,8 +142,11 @@ public class Ustandard extends Utilisateur{
 				this.creerTableau();
 			} else if (i < 25 && this.tableaux.size() > 0) {
 				this.modifierTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())));
-			} else if (i < 30 && this.tableaux.size() > 0) {
-				this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.donnerUtilisateur((int)(Math.random()*this.serveur.donnerNbUtilisateurs())));
+			} else if (i < 30 && this.tableaux.size() > 0 && this.serveur.donnerNbUtilisateurs() > 1) {
+				int idUser = (int)(Math.random()*this.serveur.donnerNbUtilisateurs());
+				if (! this.serveur.donnerUtilisateur(idUser).equals(this)) {
+					this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.donnerUtilisateur(idUser));
+				}
 			} else if (i < 45 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
 				this.ajouterEpingle(this.serveur.donnerEpingle((int)(Math.random()*this.serveur.donnerNbEpingles())), this.tableaux.get((int)(Math.random()*this.tableaux.size())));
 			} else if (i < 50 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
@@ -151,9 +156,7 @@ public class Ustandard extends Utilisateur{
 				}
 			} else if (i < 60) {
 				this.deconnecter();
-				// TODO
-				/*
-			} else if (i < 70 && this.serveur.utilisateurs.size() > 1) {
+			/*} else if (i < 70 && this.serveur.utilisateurs.size() > 1) {
 				int j = (int)(Math.random()*this.serveur.utilisateurs.size());
 				if (! this.serveur.utilisateurs.get(j).equals(this)) {
 					synchronized(Messagerie.getInstance()) {

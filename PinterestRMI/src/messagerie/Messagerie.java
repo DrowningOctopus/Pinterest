@@ -41,7 +41,7 @@ public class Messagerie {
 	 */
 	private void transmettreMessage(Message message) {
 		try {
-			message.getDestinataire().recevoirMessage(message.getEmetteur(), message.getMessage());
+			//message.getDestinataire().recevoirMessage(message.getEmetteur(), message.getMessage());
 			Thread.sleep(1000);
 			while (message.getEmetteur().actif && !message.getEmetteur().connecte) {
 				Thread.sleep(1000);
@@ -55,6 +55,6 @@ public class Messagerie {
 	}
 	
 	private void transmettreNotifLu(Message message) {
-		message.getEmetteur().recevoirNotifLu(message.getDestinataire());
+		//message.getEmetteur().recevoirNotifLu(message.getDestinataire());
 	}
 }
