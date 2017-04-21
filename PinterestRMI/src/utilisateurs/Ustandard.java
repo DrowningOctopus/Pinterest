@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import messagerie.Message;
 import messagerie.Messagerie;
+import rmi.RemoteInterface;
 import serveur.Serveur;
 import pinterest.Epingle;
 import pinterest.Tableau;
@@ -17,30 +18,13 @@ import pinterest.Tableau;
 public class Ustandard extends Utilisateur{
 	private int nbTableaux = 0;
 	
-	public Ustandard(Serveur s, String nom) {
+	public Ustandard(RemoteInterface s, String nom) {
 		super(s, nom);
 	}
 
-	/**
-	 * L'utilisateur peut soit accepter le choix de l'administrateur et retirer son
-	 * epingle, soit le refuser et etre banni (ce qui supprime son epingle de toute facon).
-	 */
-	public void repondreNotificationAdmin(Administrateur a, Epingle e) {
-		int rand = (int)(Math.random()*20);
-		this.serveur.nbEpingle--;
-		if (rand < 1) {
-			System.out.println(this.nom + " retire son épingle à la demande de " + a.nom);
-			e.supprimerEpingle(a, e);
-			this.serveur.enregistrerChangements(this);
-		} else {
-			System.out.println(this.nom + " refuse");
-			e.supprimerEpingle(a, e);
-			a.supprimerUtilisateur(this);
-		}
-	}
-	
 	private void parcourirFil() {
-		this.serveur.synchroniser(this);
+		// TODO
+		//this.serveur.synchroniser(this);
 		System.out.println(this.nom + " parcourt son fil");
 	}
 	
@@ -51,25 +35,30 @@ public class Ustandard extends Utilisateur{
 		this.tableaux.add(t);
 		t.administrateurs.add(this);
 		System.out.println(this.nom + " a cree le tableau " + t.numero);
-		this.serveur.enregistrerChangements(this);
+		// TODO
+		//this.serveur.enregistrerChangements(this);
 	}
 	
 	private void modifierTableau(Tableau t) {
 		String n = t.nom;
 		t.modifierNom();
 		System.out.println(this.nom + " a change le nom du tableau " + n + " en " + t.nom);
-		this.serveur.enregistrerChangements(this);
+		// TODO
+		//this.serveur.enregistrerChangements(this);
 	}
 	
 	private void partagerTableau(Tableau t, Ustandard u) {
 		u.tableaux.add(t);
 		t.administrateurs.add(u);
 		System.out.println(this.nom + " a partage son tableau " + t.numero + " avec " + u.nom);
-		this.serveur.enregistrerChangements(this);
+		// TODO
+		//this.serveur.enregistrerChangements(this);
 	}
 	
 	/* Methodes d'epingles */
 	private void creerEpingle() {
+		// TODO
+		/*
 		int numE = this.serveur.nbEpingle;
 		System.out.println(this.nom + " cree l'epingle " + numE);
 		Epingle e = new Epingle(numE, "", this, new ArrayList<Tableau>());
@@ -82,18 +71,21 @@ public class Ustandard extends Utilisateur{
 		this.serveur.enregistrerChangements(this);
 		this.epinglesCreees.add(e);
 		this.serveur.nbEpingle++;
+		*/
 	}
 	
 	private void ajouterEpingle(Epingle e, Tableau t) {
 		t.epingles.add(e);
 		System.out.println(this.nom + " a ajoute l'epingle " + e.numero + " a son tableau " + t.numero);
-		this.serveur.enregistrerChangements(this);
+		// TODO
+		//this.serveur.enregistrerChangements(this);
 	}
 	
 	private void supprimerEpingle(Epingle e, Tableau t) {
 		t.epingles.remove(e);
 		System.out.println(this.nom + " a retire l'epingle " + e.numero + " de son tableau " + t.numero);
-		this.serveur.enregistrerChangements(this);
+		// TODO
+		//this.serveur.enregistrerChangements(this);
 
 	}
 	
@@ -134,23 +126,23 @@ public class Ustandard extends Utilisateur{
 			} else if (i < 25 && this.tableaux.size() > 0) {
 				this.modifierTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())));
 			} else if (i < 30 && this.tableaux.size() > 0) {
-				this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.utilisateurs.get((int)(Math.random()*this.serveur.utilisateurs.size())));
+				/*this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.utilisateurs.get((int)(Math.random()*this.serveur.utilisateurs.size())));
 			} else if (i < 45 && this.serveur.epingles.size() > 0 && this.tableaux.size() > 0) {
 				this.ajouterEpingle(this.serveur.epingles.get((int)(Math.random()*this.serveur.nbEpingle)), this.tableaux.get((int)(Math.random()*this.tableaux.size())));
-			} else if (i < 50 && this.serveur.epingles.size() > 0 && this.tableaux.size() > 0) {
+			} else if (i < 50 && this.serveur.epingles.size() > 0 && this.tableaux.size() > 0) {*/
 				int t = (int)(Math.random()*this.tableaux.size());
 				if (this.tableaux.get(t).epingles.size() > 0) {
 					this.supprimerEpingle(this.tableaux.get(t).epingles.get((int)(Math.random()*this.tableaux.get(t).epingles.size())), this.tableaux.get(t));
 				}
 			} else if (i < 60) {
-				this.deconnecter();	
+				this.deconnecter();	/*
 			} else if (i < 70 && this.serveur.utilisateurs.size() > 1) {
 				int j = (int)(Math.random()*this.serveur.utilisateurs.size());
 				if (! this.serveur.utilisateurs.get(j).equals(this)) {
 					synchronized(Messagerie.getInstance()) {
 						ecrireMessage(this.serveur.utilisateurs.get(j));
 					}
-				}
+				}*/
 			} else {
 				this.parcourirFil();
 			}

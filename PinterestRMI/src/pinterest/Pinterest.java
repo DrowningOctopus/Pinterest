@@ -3,7 +3,6 @@ package pinterest;
 import java.util.ArrayList;
 
 import serveur.Serveur;
-import utilisateurs.Administrateur;
 import utilisateurs.Ustandard;
 
 /**
@@ -12,7 +11,7 @@ import utilisateurs.Ustandard;
 public class Pinterest {
 
 	public static void main(String[] args) {
-		
+		/*
 		Serveur s = new Serveur(null, new ArrayList<Ustandard>(), new ArrayList<Epingle>());
 		Administrateur greg = new Administrateur(s, "Greg");
 		Ustandard sherlock = new Ustandard(s, "Sherlock");
@@ -33,6 +32,7 @@ public class Pinterest {
 		sherlockThread.start();
 		mycroftThread.start();
 		johnThread.start();
+		*/
 	}
 	
 }

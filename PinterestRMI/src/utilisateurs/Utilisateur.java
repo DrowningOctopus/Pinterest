@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import pinterest.Epingle;
 import pinterest.Tableau;
+import rmi.RemoteInterface;
 import serveur.Serveur;
 
 /**
@@ -12,14 +13,14 @@ import serveur.Serveur;
  * C'est elle qui implemente l'interface Runnable et qui possede donc le code de la methode run().
  */
 public abstract class Utilisateur implements Runnable {
-	public Serveur serveur;
+	public RemoteInterface serveur;
 	public String nom;
 	ArrayList<Tableau> tableaux = new ArrayList<Tableau>();
 	ArrayList<Epingle> epinglesCreees = new ArrayList<Epingle>();
 	public boolean connecte = false;
 	public boolean actif = true;
 	
-	public Utilisateur(Serveur s, String nom) {
+	public Utilisateur(RemoteInterface s, String nom) {
 		this.nom = nom;
 		this.serveur = s;
 	}

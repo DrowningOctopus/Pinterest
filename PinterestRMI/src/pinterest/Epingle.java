@@ -25,7 +25,8 @@ public class Epingle {
 		for (Tableau t : this.tableaux) {
 			t.epingles.remove(e);
 		}
-		u.serveur.epingles.remove(e);
+		// TODO
+		//u.serveur.epingles.remove(e);
 		System.out.println("L'epingle " + e.numero + " est supprimee");
 	}
 	

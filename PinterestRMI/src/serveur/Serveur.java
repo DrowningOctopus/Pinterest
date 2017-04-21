@@ -3,7 +3,6 @@ package serveur;
 import java.util.ArrayList;
 
 import pinterest.Epingle;
-import utilisateurs.Administrateur;
 import utilisateurs.Ustandard;
 import utilisateurs.Utilisateur;
 
@@ -13,18 +12,12 @@ import utilisateurs.Utilisateur;
  */
 public class Serveur {
 	public int nbEpingle = 0;
-	public Administrateur administrateur;
 	public ArrayList<Ustandard> utilisateurs;
 	public ArrayList<Epingle> epingles;
 	
-	public Serveur(Administrateur a, ArrayList<Ustandard> u, ArrayList<Epingle> e) {
-		this.administrateur = a;
+	public Serveur(ArrayList<Ustandard> u, ArrayList<Epingle> e) {
 		this.epingles = e;
 		this.utilisateurs = u;
-	}
-	
-	public void setAdministrateur(Administrateur a) {
-		this.administrateur = a;
 	}
 	
 	public void synchroniser(Utilisateur u) {
