@@ -126,6 +126,7 @@ public class Ustandard extends Utilisateur{
 			} else if (i < 25 && this.tableaux.size() > 0) {
 				this.modifierTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())));
 			} else if (i < 30 && this.tableaux.size() > 0) {
+				// TODO
 				/*this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.utilisateurs.get((int)(Math.random()*this.serveur.utilisateurs.size())));
 			} else if (i < 45 && this.serveur.epingles.size() > 0 && this.tableaux.size() > 0) {
 				this.ajouterEpingle(this.serveur.epingles.get((int)(Math.random()*this.serveur.nbEpingle)), this.tableaux.get((int)(Math.random()*this.tableaux.size())));
@@ -135,7 +136,9 @@ public class Ustandard extends Utilisateur{
 					this.supprimerEpingle(this.tableaux.get(t).epingles.get((int)(Math.random()*this.tableaux.get(t).epingles.size())), this.tableaux.get(t));
 				}
 			} else if (i < 60) {
-				this.deconnecter();	/*
+				this.deconnecter();
+				// TODO
+				/*
 			} else if (i < 70 && this.serveur.utilisateurs.size() > 1) {
 				int j = (int)(Math.random()*this.serveur.utilisateurs.size());
 				if (! this.serveur.utilisateurs.get(j).equals(this)) {
