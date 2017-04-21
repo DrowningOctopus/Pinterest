@@ -3,7 +3,6 @@ package pinterest;
 import java.util.ArrayList;
 
 import utilisateurs.Ustandard;
-import utilisateurs.Utilisateur;
 
 /**
  * Simple objet contenant les informations utiles d'une epingle.

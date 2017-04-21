@@ -1,9 +1,9 @@
 package pinterest;
 
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 
 import serveur.Serveur;
-import utilisateurs.Ustandard;
+import utilisateurs.Ustandard;*/
 
 /**
  * Classe principale contenant le main.

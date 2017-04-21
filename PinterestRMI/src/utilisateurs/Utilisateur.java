@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import pinterest.Epingle;
 import pinterest.Tableau;
 import rmi.RemoteInterface;
-import serveur.Serveur;
 
 /**
  * Classe abstraite representant le comportement de base des utilisateurs : se connecter et se
