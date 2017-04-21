@@ -10,6 +10,11 @@ import utilisateurs.Ustandard;
 /*
 Il faut imperativement, pour le DM, des echanges dans les deux sens : il faut donc trouver au moins une
 fonctionnalite necessitant que le serveur interroge le client.
+
+Idee : de temps en temps, le serveur envoie une notification a un client :
+"Cette epingle vous interesse-t-elle ?"
+
+Question : faut-il garder le cote thread / runnable ou le supprimer ?????????????????
 */
 
 public interface RemoteInterface extends Remote {
