@@ -38,7 +38,6 @@ public class Ustandard extends Utilisateur{
 			this.nbTableaux++;
 			this.tableaux.add(t);
 			t.administrateurs.add(this);
-			System.out.println(this.nom + " a cree le tableau " + t.numero);
 			this.serveur.validerCreationTableau(t, this);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -49,7 +48,6 @@ public class Ustandard extends Utilisateur{
 		try {
 			String n = t.nom;
 			t.modifierNom();
-			System.out.println(this.nom + " a change le nom du tableau " + n + " en " + t.nom);
 			this.serveur.validerModificationTableau(t, t.nom, this);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -60,7 +58,6 @@ public class Ustandard extends Utilisateur{
 		try {
 			u.tableaux.add(t);
 			t.administrateurs.add(u);
-			System.out.println(this.nom + " a partage son tableau " + t.numero + " avec " + u.nom);
 			this.serveur.validerPartageTableau(t, u);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -71,12 +68,10 @@ public class Ustandard extends Utilisateur{
 	private void creerEpingle() {
 		try {
 			int numE = this.serveur.donnerNbEpingles();
-			System.out.println(this.nom + " cree l'epingle " + numE);
 			Epingle e = new Epingle(numE, "", this, new ArrayList<Tableau>());
 			this.serveur.validerCreationEpingle(e, this);
 			if (this.tableaux.size() > 0 && (int)(Math.random()*2) == 0) {
 				int numT = (int)(Math.random()*this.tableaux.size());
-				System.out.println(this.nom + " ajoute l'epingle " + numE + " au tableau " + numT);
 				Tableau t = this.tableaux.get(numT);
 				t.ajouterEpingle(e);
 				this.serveur.validerAjoutEpingle(e, t, this);
@@ -91,7 +86,6 @@ public class Ustandard extends Utilisateur{
 		try {
 			t.epingles.add(ep);
 			this.serveur.validerAjoutEpingle(ep, t, this);
-			System.out.println(this.nom + " a ajoute l'epingle " + ep.numero + " a son tableau " + t.numero);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -101,7 +95,6 @@ public class Ustandard extends Utilisateur{
 		try {
 			t.epingles.remove(ep);
 			this.serveur.validerSuppressionEpingle(ep, t, this);
-			System.out.println(this.nom + " a retire l'epingle " + ep.numero + " de son tableau " + t.numero);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
