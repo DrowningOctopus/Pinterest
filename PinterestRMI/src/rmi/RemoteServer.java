@@ -83,4 +83,19 @@ public class RemoteServer implements RemoteInterface {
 	public int donnerNbEpingles() throws RemoteException {
 		return serveur.nbEpingle;
 	}
+
+	@Override
+	public Epingle donnerEpingle(int i) throws RemoteException {
+		return serveur.epingles.get(i);
+	}
+
+	@Override
+	public int donnerNbUtilisateurs() throws RemoteException {
+		return serveur.utilisateurs.size();
+	}
+
+	@Override
+	public Ustandard donnerUtilisateur(int i) throws RemoteException {
+		return serveur.utilisateurs.get(i);
+	}
 }

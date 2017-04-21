@@ -141,11 +141,10 @@ public class Ustandard extends Utilisateur{
 			} else if (i < 25 && this.tableaux.size() > 0) {
 				this.modifierTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())));
 			} else if (i < 30 && this.tableaux.size() > 0) {
-				// TODO
-				/*this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.utilisateurs.get((int)(Math.random()*this.serveur.utilisateurs.size())));
-			} else if (i < 45 && this.serveur.epingles.size() > 0 && this.tableaux.size() > 0) {
-				this.ajouterEpingle(this.serveur.epingles.get((int)(Math.random()*this.serveur.nbEpingle)), this.tableaux.get((int)(Math.random()*this.tableaux.size())));
-			} else if (i < 50 && this.serveur.epingles.size() > 0 && this.tableaux.size() > 0) {*/
+				this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.donnerUtilisateur((int)(Math.random()*this.serveur.donnerNbUtilisateurs())));
+			} else if (i < 45 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
+				this.ajouterEpingle(this.serveur.donnerEpingle((int)(Math.random()*this.serveur.donnerNbEpingles())), this.tableaux.get((int)(Math.random()*this.tableaux.size())));
+			} else if (i < 50 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
 				int t = (int)(Math.random()*this.tableaux.size());
 				if (this.tableaux.get(t).epingles.size() > 0) {
 					this.supprimerEpingle(this.tableaux.get(t).epingles.get((int)(Math.random()*this.tableaux.get(t).epingles.size())), this.tableaux.get(t));
@@ -167,6 +166,8 @@ public class Ustandard extends Utilisateur{
 			Thread.sleep(1000);
 		}
 		catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
