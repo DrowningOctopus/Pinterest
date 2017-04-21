@@ -23,6 +23,8 @@ public class RemoteClient {
             System.out.println(stub.check());
             
             setClient(stub);
+            stub.repererClient(client);
+            
             client.agir();
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
