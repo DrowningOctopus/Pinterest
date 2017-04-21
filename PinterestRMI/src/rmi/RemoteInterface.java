@@ -27,6 +27,8 @@ public interface RemoteInterface extends Remote {
 	
 	public void validerSuppressionEpingle(Epingle e, Tableau t, Ustandard u) throws RemoteException;
 	
+	public int donnerNbEpingles() throws RemoteException;
+	
 	/*
 	// TODO
 	creerTableau()

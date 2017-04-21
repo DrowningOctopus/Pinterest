@@ -1,5 +1,6 @@
 package rmi;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -62,6 +63,7 @@ public class RemoteServer implements RemoteInterface {
 	public void validerCreationEpingle(Epingle e, Ustandard u) {
 		serveur.enregistrerChangements(u);
 		serveur.epingles.add(e);
+		serveur.nbEpingle++;
 		System.out.println("Le serveur valide la creation de l'epingle "+e.numero);
 	}
 
@@ -75,5 +77,10 @@ public class RemoteServer implements RemoteInterface {
 	public void validerSuppressionEpingle(Epingle e, Tableau t, Ustandard u) {
 		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide la suppression de l'epingle "+e.numero +" du tableau "+t.nom);
+	}
+
+	@Override
+	public int donnerNbEpingles() throws RemoteException {
+		return serveur.nbEpingle;
 	}
 }

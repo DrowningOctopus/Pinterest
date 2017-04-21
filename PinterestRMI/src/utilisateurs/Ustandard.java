@@ -66,36 +66,42 @@ public class Ustandard extends Utilisateur{
 	
 	/* Methodes d'epingles */
 	private void creerEpingle() {
-		// TODO
-		/*
-		int numE = this.serveur.nbEpingle;
-		System.out.println(this.nom + " cree l'epingle " + numE);
-		Epingle e = new Epingle(numE, "", this, new ArrayList<Tableau>());
-		this.serveur.epingles.add(e);
-		if (this.tableaux.size() > 0 && (int)(Math.random()*2) == 0) {
-			int numT = (int)(Math.random()*this.tableaux.size());
-			System.out.println(this.nom + " ajoute l'epingle " + numE + " au tableau " + numT);
-			this.tableaux.get(numT).ajouterEpingle(e);
+		try {
+			int numE = this.serveur.donnerNbEpingles();
+			System.out.println(this.nom + " cree l'epingle " + numE);
+			Epingle e = new Epingle(numE, "", this, new ArrayList<Tableau>());
+			this.serveur.validerCreationEpingle(e, this);
+			if (this.tableaux.size() > 0 && (int)(Math.random()*2) == 0) {
+				int numT = (int)(Math.random()*this.tableaux.size());
+				System.out.println(this.nom + " ajoute l'epingle " + numE + " au tableau " + numT);
+				Tableau t = this.tableaux.get(numT);
+				t.ajouterEpingle(e);
+				this.serveur.validerAjoutEpingle(e, t, this);
+			}
+			this.epinglesCreees.add(e);
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
-		this.serveur.enregistrerChangements(this);
-		this.epinglesCreees.add(e);
-		this.serveur.nbEpingle++;
-		*/
 	}
 	
-	private void ajouterEpingle(Epingle e, Tableau t) {
-		t.epingles.add(e);
-		System.out.println(this.nom + " a ajoute l'epingle " + e.numero + " a son tableau " + t.numero);
-		// TODO
-		//this.serveur.enregistrerChangements(this);
+	private void ajouterEpingle(Epingle ep, Tableau t) {
+		try {
+			t.epingles.add(ep);
+			this.serveur.validerAjoutEpingle(ep, t, this);
+			System.out.println(this.nom + " a ajoute l'epingle " + ep.numero + " a son tableau " + t.numero);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	private void supprimerEpingle(Epingle e, Tableau t) {
-		t.epingles.remove(e);
-		System.out.println(this.nom + " a retire l'epingle " + e.numero + " de son tableau " + t.numero);
-		// TODO
-		//this.serveur.enregistrerChangements(this);
-
+	private void supprimerEpingle(Epingle ep, Tableau t) {
+		try {
+			t.epingles.remove(ep);
+			this.serveur.validerSuppressionEpingle(ep, t, this);
+			System.out.println(this.nom + " a retire l'epingle " + ep.numero + " de son tableau " + t.numero);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* Methodes de messagerie */
