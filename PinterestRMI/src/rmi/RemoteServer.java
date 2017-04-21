@@ -3,14 +3,18 @@ package rmi;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import pinterest.Epingle;
 import pinterest.Tableau;
+import serveur.Serveur;
 import utilisateurs.Ustandard;
 
 public class RemoteServer implements RemoteInterface {
+	private Serveur serveur;
+	
 	public RemoteServer() {
-		// TODO Auto-generated constructor stub
+		serveur = new Serveur(new ArrayList<Ustandard>(), new ArrayList<Epingle>());
 	}
 	
 	public static void main(String args[]) {
@@ -33,7 +37,7 @@ public class RemoteServer implements RemoteInterface {
 
 	@Override
 	public void repererClient(Ustandard u) {
-		
+		serveur.utilisateurs.add(u);
 	}
 
 	@Override
