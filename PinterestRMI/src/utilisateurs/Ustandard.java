@@ -23,9 +23,12 @@ public class Ustandard extends Utilisateur{
 	}
 
 	private void parcourirFil() {
-		// TODO
-		//this.serveur.synchroniser(this);
-		System.out.println(this.nom + " parcourt son fil");
+		try {
+			this.serveur.synchroniser(this);
+			System.out.println(this.nom + " parcourt son fil");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* Methodes de tableaux */

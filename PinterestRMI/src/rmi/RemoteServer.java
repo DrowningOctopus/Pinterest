@@ -98,4 +98,9 @@ public class RemoteServer implements RemoteInterface {
 	public Ustandard donnerUtilisateur(int i) throws RemoteException {
 		return serveur.utilisateurs.get(i);
 	}
+
+	@Override
+	public void synchroniser(Ustandard u) throws RemoteException {
+		this.serveur.synchroniser(u);
+	}
 }

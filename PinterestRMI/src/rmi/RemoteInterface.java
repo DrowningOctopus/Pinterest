@@ -12,7 +12,8 @@ public interface RemoteInterface extends Remote {
 	
 	public void repererClient(Ustandard u) throws RemoteException;
 	
-	//() throws RemoteException;
+	
+	public void synchroniser(Ustandard u) throws RemoteException;
 	
 	public void validerCreationTableau(Tableau t, Ustandard u) throws RemoteException;
 	
