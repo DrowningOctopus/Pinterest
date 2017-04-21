@@ -42,8 +42,8 @@ public class RemoteServer implements RemoteInterface {
 
 	@Override
 	public void validerCreationTableau(Tableau t) {
+		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide la creation du tableau "+t.nom);
-		
 	}
 
 	@Override
@@ -58,6 +58,7 @@ public class RemoteServer implements RemoteInterface {
 
 	@Override
 	public void validerCreationEpingle(Epingle e) {
+		serveur.epingles.add(e);
 		System.out.println("Le serveur valide la creation de l'epingle "+e.numero);
 	}
 

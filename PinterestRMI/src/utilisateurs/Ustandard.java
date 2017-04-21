@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import messagerie.Message;
 import messagerie.Messagerie;
 import rmi.RemoteInterface;
-import serveur.Serveur;
 import pinterest.Epingle;
 import pinterest.Tableau;
 
