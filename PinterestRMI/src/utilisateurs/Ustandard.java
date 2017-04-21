@@ -35,24 +35,22 @@ public class Ustandard extends Utilisateur{
 		this.tableaux.add(t);
 		t.administrateurs.add(this);
 		System.out.println(this.nom + " a cree le tableau " + t.numero);
-		// TODO
-		//this.serveur.enregistrerChangements(this);
+		this.serveur.validerCreationTableau(t);
 	}
 	
 	private void modifierTableau(Tableau t) {
 		String n = t.nom;
 		t.modifierNom();
 		System.out.println(this.nom + " a change le nom du tableau " + n + " en " + t.nom);
-		// TODO
-		//this.serveur.enregistrerChangements(this);
+		this.serveur.validerModificationTableau(t, t.nom);
 	}
 	
 	private void partagerTableau(Tableau t, Ustandard u) {
 		u.tableaux.add(t);
 		t.administrateurs.add(u);
 		System.out.println(this.nom + " a partage son tableau " + t.numero + " avec " + u.nom);
-		// TODO
-		//this.serveur.enregistrerChangements(this);
+		
+		this.serveur.validerPartageTableau(t, u);
 	}
 	
 	/* Methodes d'epingles */
