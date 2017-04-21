@@ -1,5 +1,6 @@
 package utilisateurs;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import messagerie.Message;
@@ -30,26 +31,38 @@ public class Ustandard extends Utilisateur{
 	
 	/* Methodes de tableaux */
 	private void creerTableau() {
-		Tableau t = new Tableau(this.nbTableaux, "", this, new ArrayList<Ustandard>(), new ArrayList<Epingle>());
-		this.nbTableaux++;
-		this.tableaux.add(t);
-		t.administrateurs.add(this);
-		System.out.println(this.nom + " a cree le tableau " + t.numero);
-		this.serveur.validerCreationTableau(t);
+		try {
+			Tableau t = new Tableau(this.nbTableaux, "", this, new ArrayList<Ustandard>(), new ArrayList<Epingle>());
+			this.nbTableaux++;
+			this.tableaux.add(t);
+			t.administrateurs.add(this);
+			System.out.println(this.nom + " a cree le tableau " + t.numero);
+			this.serveur.validerCreationTableau(t);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void modifierTableau(Tableau t) {
-		String n = t.nom;
-		t.modifierNom();
-		System.out.println(this.nom + " a change le nom du tableau " + n + " en " + t.nom);
-		this.serveur.validerModificationTableau(t, t.nom);
+		try {
+			String n = t.nom;
+			t.modifierNom();
+			System.out.println(this.nom + " a change le nom du tableau " + n + " en " + t.nom);
+			this.serveur.validerModificationTableau(t, t.nom);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void partagerTableau(Tableau t, Ustandard u) {
-		u.tableaux.add(t);
-		t.administrateurs.add(u);
-		System.out.println(this.nom + " a partage son tableau " + t.numero + " avec " + u.nom);
-		this.serveur.validerPartageTableau(t, u);
+		try {
+			u.tableaux.add(t);
+			t.administrateurs.add(u);
+			System.out.println(this.nom + " a partage son tableau " + t.numero + " avec " + u.nom);
+			this.serveur.validerPartageTableau(t, u);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* Methodes d'epingles */
