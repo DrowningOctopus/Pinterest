@@ -12,8 +12,7 @@ public class RemoteClient {
         try {
             Registry registry = LocateRegistry.getRegistry(host);
             RemoteInterface stub = (RemoteInterface) registry.lookup("RemoteInterface");
-            //String response = stub.sayHello();
-            //System.out.println("response: " + response);
+            System.out.println(stub.check());
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();

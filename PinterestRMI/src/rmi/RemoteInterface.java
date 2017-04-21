@@ -7,6 +7,8 @@ import pinterest.Tableau;
 import utilisateurs.Ustandard;
 
 public interface RemoteInterface extends Remote {
+	public String check();
+	
 	//() throws RemoteException;
 	
 	public void validerCreationTableau(Tableau t);

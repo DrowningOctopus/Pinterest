@@ -27,6 +27,11 @@ public class RemoteServer implements RemoteInterface {
     }
 
 	@Override
+	public String check() {
+		return "OK";
+	}
+
+	@Override
 	public void validerCreationTableau(Tableau t) {
 		// TODO Auto-generated method stub
 		
