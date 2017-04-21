@@ -33,7 +33,7 @@ public class RemoteServer implements RemoteInterface {
 
 	@Override
 	public String check() {
-		return "OK";
+		return "* Serveur OK *";
 	}
 
 	@Override
@@ -102,5 +102,6 @@ public class RemoteServer implements RemoteInterface {
 	@Override
 	public void synchroniser(Ustandard u) throws RemoteException {
 		this.serveur.synchroniser(u);
+		System.out.println("Le serveur synchronise le fil pour "+u.nom);
 	}
 }

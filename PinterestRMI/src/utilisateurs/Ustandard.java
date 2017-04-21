@@ -3,8 +3,6 @@ package utilisateurs;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import messagerie.Message;
-import messagerie.Messagerie;
 import rmi.RemoteInterface;
 import pinterest.Epingle;
 import pinterest.Tableau;
@@ -46,7 +44,6 @@ public class Ustandard extends Utilisateur{
 	
 	private void modifierTableau(Tableau t) {
 		try {
-			String n = t.nom;
 			t.modifierNom();
 			this.serveur.validerModificationTableau(t, t.nom, this);
 		} catch (RemoteException e) {
@@ -100,23 +97,6 @@ public class Ustandard extends Utilisateur{
 		}
 	}
 	
-	/* Methodes de messagerie */
-	/*
-	private void ecrireMessage(Ustandard destinataire) {
-		Message message = new Message(this, destinataire);
-		System.out.println(this.nom+" a ecrit le message '"+message+"' pour "+destinataire.nom);
-		Messagerie.getInstance().recupererMessage(message);
-	}
-
-	public void recevoirMessage(Utilisateur emetteur, String message) {
-		System.out.println(this.nom+" a recu le message '"+message+"' de "+emetteur.nom);
-	}
-
-	public void recevoirNotifLu(Utilisateur destinataire) {
-		System.out.println(this.nom+" a recu une notification 'Lu' de "+destinataire.nom);
-	}
-	*/
-	
 	/**
 	 * L'utilisateur a le choix entre diverses actions :
 	 * - creer une epingle
@@ -152,13 +132,6 @@ public class Ustandard extends Utilisateur{
 				}
 			} else if (i < 60) {
 				this.deconnecter();
-			/*} else if (i < 70 && this.serveur.utilisateurs.size() > 1) {
-				int j = (int)(Math.random()*this.serveur.utilisateurs.size());
-				if (! this.serveur.utilisateurs.get(j).equals(this)) {
-					synchronized(Messagerie.getInstance()) {
-						ecrireMessage(this.serveur.utilisateurs.get(j));
-					}
-				}*/
 			} else {
 				this.parcourirFil();
 			}
@@ -170,5 +143,4 @@ public class Ustandard extends Utilisateur{
 			e.printStackTrace();
 		}
 	}
-
 }
