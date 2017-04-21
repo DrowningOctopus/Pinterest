@@ -20,15 +20,4 @@ public class Epingle {
 		this.createur  = cr;
 		this.tableaux = t;
 	}
-
-	public void supprimerEpingle(Utilisateur u, Epingle e) {
-		for (Tableau t : this.tableaux) {
-			t.epingles.remove(e);
-		}
-		// TODO
-		//u.serveur.epingles.remove(e);
-		System.out.println("L'epingle " + e.numero + " est supprimee");
-	}
-	
-
 }
