@@ -1,9 +1,10 @@
-package rmi;
+package rmiside;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import utilisateurs.Ustandard;
+import rmiside.RemoteInterface;
 
 public class RemoteClient {
 	private static Ustandard client;

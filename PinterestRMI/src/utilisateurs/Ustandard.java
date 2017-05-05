@@ -3,7 +3,7 @@ package utilisateurs;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import rmi.RemoteInterface;
+import rmiside.RemoteInterface;
 import pinterest.Epingle;
 import pinterest.Tableau;
 
