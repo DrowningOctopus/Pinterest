@@ -25,6 +25,7 @@ public class RemoteServer implements RemoteInterface {
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("RemoteInterface", stub);
             System.err.println("Server ready");
+            System.out.println(self.check());
         } catch (Exception e) {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();
@@ -38,7 +39,11 @@ public class RemoteServer implements RemoteInterface {
 
 	@Override
 	public void repererClient(Ustandard u) {
+		System.out.println("reperons le client");
+		System.out.println("serveur : "+serveur);
+		System.out.println("serveur.utilisateurs : "+serveur.utilisateurs);
 		serveur.utilisateurs.add(u);
+		System.out.println("le client est repere");
 	}
 
 	@Override
