@@ -1,5 +1,6 @@
 package rmiside;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -13,7 +14,7 @@ public class RemoteClient {
 		System.out.println("constructeur Client ok");
 	}
 
-	private static void setClient(RemoteInterface ri) {
+	private static void setClient(RemoteInterface ri) throws RemoteException {
 		System.out.println("on set le client...");
 		client = new Ustandard(ri, "Test");
 		System.out.println("... le client est set.");

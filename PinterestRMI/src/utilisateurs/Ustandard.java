@@ -13,10 +13,14 @@ import pinterest.Tableau;
  * de ses tableaux, partager ses tableaux avec d'autres utilisateurs standards et envoyer des
  * messages a d'autres utilisateurs standards.
  */
-public class Ustandard extends Utilisateur{
+public class Ustandard extends Utilisateur {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int nbTableaux = 0;
 	
-	public Ustandard(RemoteInterface s, String nom) {
+	public Ustandard(RemoteInterface s, String nom) throws RemoteException {
 		super(s, nom);
 	}
 

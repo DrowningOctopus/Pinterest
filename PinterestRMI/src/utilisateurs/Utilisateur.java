@@ -1,5 +1,7 @@
 package utilisateurs;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import pinterest.Epingle;
@@ -11,7 +13,11 @@ import rmiside.RemoteInterface;
  * deconnecter, et agir en consequence.
  * C'est elle qui implemente l'interface Runnable et qui possede donc le code de la methode run().
  */
-public abstract class Utilisateur implements Runnable {
+public abstract class Utilisateur extends UnicastRemoteObject implements Runnable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public RemoteInterface serveur;
 	public String nom;
 	ArrayList<Tableau> tableaux = new ArrayList<Tableau>();
@@ -19,7 +25,7 @@ public abstract class Utilisateur implements Runnable {
 	public boolean connecte = false;
 	public boolean actif = true;
 	
-	public Utilisateur(RemoteInterface s, String nom) {
+	public Utilisateur(RemoteInterface s, String nom) throws RemoteException {
 		this.nom = nom;
 		this.serveur = s;
 	}

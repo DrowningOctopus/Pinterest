@@ -14,6 +14,9 @@ fonctionnalite necessitant que le serveur interroge le client.
 Idee : de temps en temps, le serveur envoie une notification a un client :
 "Cette epingle vous interesse-t-elle ?"
 
+... Est-ce que par hasard, il ne faudrait pas que RemoteClient implemente egalement une interface qui etend
+Remote, pour pouvoir par exemple transmettre son attribut client ?
+
 Question : faut-il garder le cote thread / runnable ou le supprimer ??
 */
 
