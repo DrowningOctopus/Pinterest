@@ -1,7 +1,5 @@
 package pinterest;
 
-import java.util.ArrayList;
-
 import utilisateurs.Ustandard;
 
 /**
