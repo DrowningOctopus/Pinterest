@@ -41,6 +41,7 @@ public class Ustandard extends Utilisateur {
 			this.tableaux.add(t);
 			t.administrateurs.add(this);
 			this.serveur.validerCreationTableau(t, this);
+			System.out.println(this.nom+" cree le tableau numero "+t.numero+" (nom : "+t.nom+")");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -50,6 +51,7 @@ public class Ustandard extends Utilisateur {
 		try {
 			t.modifierNom();
 			this.serveur.validerModificationTableau(t, t.nom, this);
+			System.out.println(this.nom+" modifie le tableau numero "+t.numero+" (nouveau nom : "+t.nom+")");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -60,6 +62,7 @@ public class Ustandard extends Utilisateur {
 			u.tableaux.add(t);
 			t.administrateurs.add(u);
 			this.serveur.validerPartageTableau(t, u);
+			System.out.println(this.nom+" partage le tableau numero "+t.numero+" (nouveau nom : "+t.nom+")");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +81,7 @@ public class Ustandard extends Utilisateur {
 				this.serveur.validerAjoutEpingle(e, t, this);
 			}
 			this.epinglesCreees.add(e);
+			System.out.println(this.nom+" cree l'epingle "+numE);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -87,6 +91,7 @@ public class Ustandard extends Utilisateur {
 		try {
 			t.epingles.add(ep);
 			this.serveur.validerAjoutEpingle(ep, t, this);
+			System.out.println(this.nom+" ajoute l'epingle "+ep.numero+" au tableau "+t.nom+" ("+t.numero+")");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -96,6 +101,7 @@ public class Ustandard extends Utilisateur {
 		try {
 			t.epingles.remove(ep);
 			this.serveur.validerSuppressionEpingle(ep, t, this);
+			System.out.println(this.nom+" supprime l'epingle "+ep.numero+" du tableau "+t.nom+" ("+t.numero+")");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -116,7 +122,6 @@ public class Ustandard extends Utilisateur {
 	public void agir() {
 		try {
 			int i = (int)(Math.random()*100);
-			System.out.println("*** "+i);
 			if (!connecte) {
 				if (i < 50) {
 					this.connecter();
