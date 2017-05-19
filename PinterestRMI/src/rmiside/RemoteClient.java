@@ -41,7 +41,9 @@ public class RemoteClient {
             stub.repererClient(client);
             
             System.out.println("agissons !");
-            client.agir();
+            while (true) {
+            	client.agir();
+            }
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();

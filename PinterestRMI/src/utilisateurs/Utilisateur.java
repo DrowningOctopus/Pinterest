@@ -29,7 +29,7 @@ public abstract class Utilisateur extends RemoteException implements Runnable {
 		this.serveur = s;
 	}
 	
-	private synchronized void connecter() {
+	protected synchronized void connecter() {
 		System.out.println(this.nom +" se connecte");
 		this.connecte = true;
 		notifyAll();
