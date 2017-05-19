@@ -1,5 +1,7 @@
 package pinterest;
 
+import java.io.Serializable;
+import java.rmi.Remote;
 import java.util.ArrayList;
 
 import utilisateurs.Ustandard;
@@ -7,7 +9,8 @@ import utilisateurs.Ustandard;
 /**
  * Simple objet contenant les informations utiles d'un tableau.
  */
-public class Tableau {
+public class Tableau implements Remote, Serializable {
+	private static final long serialVersionUID = 1L;
 	public int numero;
 	public String nom;
 	public Ustandard createur;
