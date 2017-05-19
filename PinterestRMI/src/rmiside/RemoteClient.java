@@ -36,6 +36,8 @@ public class RemoteClient {
             
             System.out.println("***"+client);
             
+            System.out.println("---"+stub);
+            
             stub.repererClient(client);
             
             System.out.println("agissons !");
