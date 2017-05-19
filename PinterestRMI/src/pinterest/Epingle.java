@@ -1,11 +1,14 @@
 package pinterest;
 
+import java.io.Serializable;
+
 import utilisateurs.Ustandard;
 
 /**
  * Simple objet contenant les informations utiles d'une epingle.
  */
-public class Epingle {
+public class Epingle implements Serializable {
+	private static final long serialVersionUID = 1L;
 	public int numero;
 	public String commentaire;
 	public Ustandard createur;

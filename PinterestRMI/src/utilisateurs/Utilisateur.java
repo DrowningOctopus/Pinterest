@@ -1,5 +1,7 @@
 package utilisateurs;
 
+import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -12,7 +14,7 @@ import rmiside.RemoteInterface;
  * deconnecter, et agir en consequence.
  * C'est elle qui implemente l'interface Runnable et qui possede donc le code de la methode run().
  */
-public abstract class Utilisateur extends RemoteException implements Runnable {
+public abstract class Utilisateur implements Remote, Serializable, Runnable {
 	/**
 	 * 
 	 */
@@ -41,14 +43,18 @@ public abstract class Utilisateur extends RemoteException implements Runnable {
 		notifyAll();
 	}
 	
-	public abstract void agir();
+	public abstract void agir() throws RemoteException;
 	
 	public void run(){
 		System.out.println(this.nom + " commence");
 		while (true) {
 			if (this.actif) {
 				if (this.connecte) {
-					this.agir();
+					try {
+						this.agir();
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				} else {
 					try {
 						Thread.sleep((int)(Math.random()*5000));

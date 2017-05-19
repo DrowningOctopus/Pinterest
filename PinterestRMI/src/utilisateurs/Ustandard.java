@@ -66,7 +66,7 @@ public class Ustandard extends Utilisateur {
 	}
 	
 	/* Methodes d'epingles */
-	private void creerEpingle() {
+	private void creerEpingle() throws RemoteException {
 		try {
 			int numE = this.serveur.donnerNbEpingles();
 			Epingle e = new Epingle(numE, "", this);
@@ -116,6 +116,7 @@ public class Ustandard extends Utilisateur {
 	public void agir() {
 		try {
 			int i = (int)(Math.random()*100);
+			System.out.println("*** "+i);
 			if (!connecte) {
 				if (i < 50) {
 					this.connecter();
