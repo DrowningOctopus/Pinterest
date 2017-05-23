@@ -26,7 +26,6 @@ public class RemoteServer implements RemoteInterface {
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("RemoteInterface", stub);
             System.err.println("Server ready");
-            System.out.println(self.check());
         } catch (Exception e) {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();

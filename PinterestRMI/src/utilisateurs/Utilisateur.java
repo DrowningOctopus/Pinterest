@@ -6,7 +6,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import pinterest.Epingle;
-import pinterest.Tableau;
 import rmiside.RemoteInterface;
 
 /**

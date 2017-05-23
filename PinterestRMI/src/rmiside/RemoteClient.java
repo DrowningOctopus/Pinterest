@@ -15,32 +15,16 @@ public class RemoteClient {
 	}
 
 	private static void setClient(RemoteInterface ri) throws RemoteException {
-		System.out.println("on set le client...");
 		client = new Ustandard(ri);
-		System.out.println("... le client est set.");
 	}
 	
     public static void main(String[] args) {
-    	System.out.println("debut du main");
         String host = (args.length < 1) ? null : args[0];
         try {
-        	System.out.println("try");
             Registry registry = LocateRegistry.getRegistry(host);
             RemoteInterface stub = (RemoteInterface) registry.lookup("RemoteInterface");
-            
-            System.out.println(stub.check());
-            
             setClient(stub);
-            
-            System.out.println("stub repere client ?");
-            
-            System.out.println("***"+client);
-            
-            System.out.println("---"+stub);
-            
             stub.repererClient(client);
-            
-            System.out.println("agissons !");
             while (true) {
             	client.agir();
             }
