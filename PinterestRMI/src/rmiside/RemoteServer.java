@@ -110,7 +110,7 @@ public class RemoteServer implements RemoteInterface {
 	}
 
 	@Override
-	public HashMap<String, Tableau> rendsLesTableauxAuxUtilisateurs() throws RemoteException {
-		return this.serveur.tableaux;
+	public Tableau donnerTableau(String nom) throws RemoteException {
+		return this.serveur.tableaux.get(nom);
 	}
 }

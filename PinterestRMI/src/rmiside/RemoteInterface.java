@@ -2,7 +2,6 @@ package rmiside;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.HashMap;
 
 import pinterest.Epingle;
 import pinterest.Tableau;
@@ -38,5 +37,5 @@ public interface RemoteInterface extends Remote {
 	public void validerSuppressionEpingle(Epingle e, Tableau t, Ustandard u) throws RemoteException;
 	public int donnerNbEpingles() throws RemoteException;
 	public Epingle donnerEpingle(int i) throws RemoteException;
-	public HashMap<String, Tableau> rendsLesTableauxAuxUtilisateurs() throws RemoteException;
+	public Tableau donnerTableau(String nom) throws RemoteException;
 }

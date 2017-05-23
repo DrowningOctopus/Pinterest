@@ -59,7 +59,7 @@ public class Ustandard extends Utilisateur {
 	
 	private void modifierTableau(String nomT) {
 		try {
-			Tableau t = this.serveur.rendsLesTableauxAuxUtilisateurs().get(nomT);
+			Tableau t = this.serveur.donnerTableau(nomT);
 			t.modifierNom();
 			this.serveur.validerModificationTableau(t, t.nom, this);
 			System.out.println(this.nom+" renomme son tableau en "+t.nom);
@@ -89,9 +89,9 @@ public class Ustandard extends Utilisateur {
 				int numT = (int)(Math.random()*this.tableaux.size());
 				String nomT = this.tableaux.get(numT);
 				//t.ajouterEpingle(e);
-				this.serveur.rendsLesTableauxAuxUtilisateurs().get(nomT).ajouterEpingle(e);
+				this.serveur.donnerTableau(nomT).ajouterEpingle(e);
 				System.out.println(this.nom+" ajoute l'epingle "+numE+" au tableau "+nomT);
-				this.serveur.validerAjoutEpingle(e, this.serveur.rendsLesTableauxAuxUtilisateurs().get(nomT), this);
+				this.serveur.validerAjoutEpingle(e, this.serveur.donnerTableau(nomT), this);
 			}
 			this.epinglesCreees.add(e);
 			System.out.println(this.nom+" cree l'epingle "+numE);
@@ -102,7 +102,7 @@ public class Ustandard extends Utilisateur {
 	
 	private void ajouterEpingle(Epingle ep, String nomT) {
 		try {
-			Tableau t = this.serveur.rendsLesTableauxAuxUtilisateurs().get(nomT);
+			Tableau t = this.serveur.donnerTableau(nomT);
 			t.epingles.add(ep);
 			this.serveur.validerAjoutEpingle(ep, t, this);
 			System.out.println(this.nom+" ajoute l'epingle "+ep.numero+" au tableau "+t.nom);
@@ -113,7 +113,7 @@ public class Ustandard extends Utilisateur {
 	
 	private void supprimerEpingle(Epingle ep, String nomT) {
 		try {
-			Tableau t = this.serveur.rendsLesTableauxAuxUtilisateurs().get(nomT);
+			Tableau t = this.serveur.donnerTableau(nomT);
 			t.epingles.remove(ep);
 			this.serveur.validerSuppressionEpingle(ep, t, this);
 			System.out.println(this.nom+" supprime l'epingle "+ep.numero+" du tableau "+t.nom);
@@ -156,7 +156,7 @@ public class Ustandard extends Utilisateur {
 					int idUser = (int)(Math.random()*this.serveur.donnerNbUtilisateurs());
 					String nomT = this.tableaux.get((int)(Math.random()*this.tableaux.size()));
 					Ustandard u = this.serveur.donnerUtilisateur(idUser);
-					Tableau t = this.serveur.rendsLesTableauxAuxUtilisateurs().get(nomT);
+					Tableau t = this.serveur.donnerTableau(nomT);
 					if (!t.estDejaAdministrePar(u)) {
 						this.partagerTableau(t, u);
 					}
@@ -164,7 +164,7 @@ public class Ustandard extends Utilisateur {
 					this.ajouterEpingle(this.serveur.donnerEpingle((int)(Math.random()*this.serveur.donnerNbEpingles())), this.tableaux.get((int)(Math.random()*this.tableaux.size())));
 				} else if (i < 90 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
 					int t = (int)(Math.random()*this.tableaux.size());
-					Tableau tBis = this.serveur.rendsLesTableauxAuxUtilisateurs().get(this.tableaux.get(t));
+					Tableau tBis = this.serveur.donnerTableau(this.tableaux.get(t));
 					if (tBis.epingles.size() > 0) {
 						this.supprimerEpingle(tBis.epingles.get((int)(Math.random()*tBis.epingles.size())), this.tableaux.get(t));
 					}
