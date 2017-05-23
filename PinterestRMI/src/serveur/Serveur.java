@@ -39,7 +39,6 @@ public class Serveur {
 		while (true) {
 			v = Math.random();
 			if (utilisateurs.size() > 0 && v < 0.1) {
-				System.out.println("premiere page ???");
 				int idUser = (int)(Math.random()*utilisateurs.size());
 				Ustandard u = utilisateurs.get(idUser).donnerClient();
 				String tNom = u.donnerTableauCelebre();
@@ -49,7 +48,6 @@ public class Serveur {
 					System.out.println("Le serveur met en premiere page le tableau le plus celebre de "+u.nom+" : "+tNom);
 				}
 			} else if (utilisateurs.size() > 0 && v < 0.2) {
-				System.out.println("rang ???");
 				int idUser = (int)(Math.random()*utilisateurs.size());
 				Ustandard u = utilisateurs.get(idUser).donnerClient();
 				Rang rang = u.rang.changer();

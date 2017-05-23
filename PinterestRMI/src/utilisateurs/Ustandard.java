@@ -62,7 +62,7 @@ public class Ustandard extends Utilisateur {
 			Tableau t = this.serveur.donnerTableau(nomT);
 			t.modifierNom();
 			this.serveur.validerModificationTableau(t, t.nom, this);
-			System.out.println(this.nom+" renomme son tableau en "+t.nom);
+			System.out.println(this.nom+" renomme le tableau "+nomT+" en "+t.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

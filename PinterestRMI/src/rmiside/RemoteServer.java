@@ -66,7 +66,7 @@ public class RemoteServer implements RemoteServerInterface {
 	@Override
 	public void validerPartageTableau(Tableau t, Ustandard u) {
 		serveur.enregistrerChangements(u);
-		System.out.println("Le serveur valide le partage du tableau " + t.nom + " de" + t.createur.nom + " avec "+u.nom);
+		System.out.println("Le serveur valide le partage du tableau " + t.nom + " de " + t.createur.nom + " avec "+u.nom);
 	}
 
 	@Override
