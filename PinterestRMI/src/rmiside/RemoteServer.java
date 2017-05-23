@@ -55,6 +55,9 @@ public class RemoteServer implements RemoteServerInterface {
 
 	@Override
 	public void validerModificationTableau(Tableau t, String s, Ustandard u) {
+		Tableau tab = serveur.tableaux.get(t.nom);
+		serveur.tableaux.remove(t.nom);
+		serveur.tableaux.put(s, tab);
 		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide la modification du tableau "+t.nom + " par " + u.nom);
 	}

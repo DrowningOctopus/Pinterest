@@ -60,6 +60,9 @@ public class Ustandard extends Utilisateur {
 	private void modifierTableau(String nomT) {
 		try {
 			Tableau t = this.serveur.donnerTableau(nomT);
+			
+			System.out.println("modifierTableau $ t "+t);
+			
 			t.modifierNom();
 			this.serveur.validerModificationTableau(t, t.nom, this);
 			System.out.println(this.nom+" renomme son tableau en "+t.nom);
@@ -103,6 +106,9 @@ public class Ustandard extends Utilisateur {
 	private void ajouterEpingle(Epingle ep, String nomT) {
 		try {
 			Tableau t = this.serveur.donnerTableau(nomT);
+			
+			System.out.println("ajouterEpingle $ t "+t);
+			
 			t.epingles.add(ep);
 			this.serveur.validerAjoutEpingle(ep, t, this);
 			System.out.println(this.nom+" ajoute l'epingle "+ep.numero+" au tableau "+t.nom);
@@ -165,6 +171,10 @@ public class Ustandard extends Utilisateur {
 				} else if (i < 90 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
 					int t = (int)(Math.random()*this.tableaux.size());
 					Tableau tBis = this.serveur.donnerTableau(this.tableaux.get(t));
+					
+					System.out.println("agir.90 $ tBis "+tBis);
+					System.out.println("agir.90 $ tBis.epingles "+tBis.epingles);
+					
 					if (tBis.epingles.size() > 0) {
 						this.supprimerEpingle(tBis.epingles.get((int)(Math.random()*tBis.epingles.size())), this.tableaux.get(t));
 					}
