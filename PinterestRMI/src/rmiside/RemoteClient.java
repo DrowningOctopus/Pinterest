@@ -16,7 +16,7 @@ public class RemoteClient {
 
 	private static void setClient(RemoteInterface ri) throws RemoteException {
 		System.out.println("on set le client...");
-		client = new Ustandard(ri, "Test");
+		client = new Ustandard(ri);
 		System.out.println("... le client est set.");
 	}
 	

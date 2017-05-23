@@ -24,6 +24,18 @@ public class Ustandard extends Utilisateur {
 		super(s, nom);
 	}
 
+	public Ustandard(RemoteInterface s) throws RemoteException {
+		super(s, "");
+		String choix = "abcdefghijklmnopqrstuvwxyz1234567890";
+        int longueur = (int)(Math.random()*7+1);
+        String nom = "";
+        for (int i = 0 ; i < longueur ; i++) {
+            int index = (int) (Math.random() * choix.length());
+            nom += choix.charAt(index);
+        }
+        this.nom = nom.toUpperCase();
+	}
+	
 	private void parcourirFil() {
 		try {
 			this.serveur.synchroniser(this);
