@@ -25,7 +25,13 @@ public class RemoteClient implements RemoteClientInterface, Serializable {
         String host = (args.length < 1) ? null : args[0];
         try {
         	RemoteClient self = new RemoteClient();
-            Registry registry = LocateRegistry.getRegistry(host);
+        	Registry registry;
+        	if (args.length < 2) {
+        		registry = LocateRegistry.getRegistry(host);
+        	} else {
+        		int port = Integer.parseInt(args[1]);
+        		registry = LocateRegistry.getRegistry(host, port);
+        	}
             RemoteServerInterface stub = (RemoteServerInterface) registry.lookup("RemoteServerInterface");
             self.setClient(stub);
             stub.repererClient(self);
