@@ -38,11 +38,18 @@ public class Serveur {
 		double v;
 		while (true) {
 			v = Math.random();
-			if (v < 0.1) {
+			if (utilisateurs.size() > 0 && v < 0.1) {
+				System.out.println("premiere page ???");
 				int idUser = (int)(Math.random()*utilisateurs.size());
 				Ustandard u = utilisateurs.get(idUser).donnerClient();
-				System.out.println("Le serveur met en premiere page le tableau le plus celebre de "+u.nom+" : "+u.donnerTableauCelebre());
-			} else if (v < 0.2) {
+				String tNom = u.donnerTableauCelebre();
+				if (tNom.equals("*")) {
+					System.out.println("Le serveur n'a pas trouve de tableau chez "+u.nom+" a mettre en premiere page");
+				} else {
+					System.out.println("Le serveur met en premiere page le tableau le plus celebre de "+u.nom+" : "+tNom);
+				}
+			} else if (utilisateurs.size() > 0 && v < 0.2) {
+				System.out.println("rang ???");
 				int idUser = (int)(Math.random()*utilisateurs.size());
 				Ustandard u = utilisateurs.get(idUser).donnerClient();
 				Rang rang = u.rang.changer();

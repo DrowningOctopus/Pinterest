@@ -29,6 +29,7 @@ public abstract class Utilisateur implements Serializable, Runnable {
 	public Utilisateur(RemoteServerInterface s, String nom) throws RemoteException {
 		this.nom = nom;
 		this.serveur = s;
+		this.rang = Rang.NOUVEAU;
 	}
 	
 	protected synchronized void connecter() {
@@ -44,8 +45,12 @@ public abstract class Utilisateur implements Serializable, Runnable {
 	}
 	
 	public String donnerTableauCelebre() {
-		int idTableau = (int)(Math.random()*this.tableaux.size());
-		return this.tableaux.get(idTableau);
+		if (this.tableaux.size() > 0) {
+			int idTableau = (int)(Math.random()*this.tableaux.size());
+			return this.tableaux.get(idTableau);
+		} else {
+			return "*";
+		}
 	}
 	
 	public abstract void agir() throws RemoteException;

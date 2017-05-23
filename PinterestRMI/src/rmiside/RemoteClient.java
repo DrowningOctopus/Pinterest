@@ -1,5 +1,6 @@
 package rmiside;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -8,7 +9,8 @@ import utilisateurs.Ustandard;
 import rmiside.RemoteServerInterface;
 import serveur.Rang;
 
-public class RemoteClient implements RemoteClientInterface {
+public class RemoteClient implements RemoteClientInterface, Serializable {
+	private static final long serialVersionUID = 1L;
 	private Ustandard client;
 	
 	private RemoteClient() {
