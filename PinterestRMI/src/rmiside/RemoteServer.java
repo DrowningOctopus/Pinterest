@@ -109,4 +109,9 @@ public class RemoteServer implements RemoteInterface {
 	public void synchroniser(Ustandard u) throws RemoteException {
 		this.serveur.synchroniser(u);
 	}
+
+	@Override
+	public HashMap<String, Tableau> rendsLesTableauxAuxUtilisateurs() throws RemoteException {
+		return this.serveur.tableaux;
+	}
 }
