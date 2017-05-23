@@ -17,6 +17,7 @@ public class Tableau implements Remote, Serializable {
 	public ArrayList<Epingle> epingles;
 	
 	public Tableau(Ustandard c, ArrayList<Ustandard> m, ArrayList<Epingle> e) {
+		modifierNom();
 		this.createur = c;
 		this.administrateurs = m;
 		this.epingles = e;
