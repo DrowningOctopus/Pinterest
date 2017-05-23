@@ -26,7 +26,7 @@ public class RemoteClient implements RemoteClientInterface, Serializable {
         try {
         	RemoteClient self = new RemoteClient();
             Registry registry = LocateRegistry.getRegistry(host);
-            RemoteServerInterface stub = (RemoteServerInterface) registry.lookup("RemoteInterface");
+            RemoteServerInterface stub = (RemoteServerInterface) registry.lookup("RemoteServerInterface");
             self.setClient(stub);
             stub.repererClient(self);
             // bad practice

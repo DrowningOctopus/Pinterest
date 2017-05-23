@@ -24,7 +24,7 @@ public class RemoteServer implements RemoteServerInterface {
             RemoteServer self = new RemoteServer();
             RemoteServerInterface stub = (RemoteServerInterface) UnicastRemoteObject.exportObject(self, 0);
             Registry registry = LocateRegistry.getRegistry();
-            registry.bind("RemoteInterface", stub);
+            registry.bind("RemoteServerInterface", stub);
             System.err.println("Server ready");
             self.serveur.run();
         } catch (Exception e) {
@@ -49,6 +49,7 @@ public class RemoteServer implements RemoteServerInterface {
 
 	@Override
 	public void validerCreationTableau(Tableau t, Ustandard u) {
+		serveur.tableaux.put(t.nom, t);
 		serveur.enregistrerChangements(u);
 		System.out.println("Le serveur valide la creation du tableau "+t.nom + " par " + u.nom);
 	}

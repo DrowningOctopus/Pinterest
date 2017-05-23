@@ -54,6 +54,7 @@ public class Serveur {
 				Ustandard u = utilisateurs.get(idUser).donnerClient();
 				Rang rang = u.rang.changer();
 				System.out.println("Le serveur change le rang de "+u.nom+" de "+u.rang+" a "+rang);
+				u.rang = rang;
 			}
 			try {
 				Thread.sleep(2000);
