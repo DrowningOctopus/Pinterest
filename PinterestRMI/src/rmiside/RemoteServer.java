@@ -5,6 +5,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import pinterest.Epingle;
 import pinterest.Tableau;
@@ -15,7 +16,7 @@ public class RemoteServer implements RemoteInterface {
 	private Serveur serveur;
 	
 	public RemoteServer() {
-		serveur = new Serveur(new ArrayList<Ustandard>(), new ArrayList<Epingle>());
+		serveur = new Serveur(new ArrayList<Ustandard>(), new ArrayList<Epingle>(), new HashMap<String, Tableau>());
 	}
 	
 	public static void main(String args[]) {
