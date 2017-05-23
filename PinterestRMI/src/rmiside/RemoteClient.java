@@ -9,6 +9,16 @@ import utilisateurs.Ustandard;
 import rmiside.RemoteServerInterface;
 import serveur.Rang;
 
+/**
+ * Implementation des clients RMI de notre projet.
+ * Le port utilise par defaut est 1091.
+ * 
+ * Par defaut le serveur est suppose etre local, pour tester sur une machine distante, il
+ * faut utiliser le menu Run -> Run Configurations pour entrer en argument d'execution
+ * l'adresse IPv4 de la machine faisant tourner le serveur.
+ * 
+ * Voir l'interface correspondante pour quelques remarques de plus a propos des methodes.
+ */
 public class RemoteClient implements RemoteClientInterface, Serializable {
 	private static final long serialVersionUID = 1L;
 	private Ustandard client;
@@ -23,18 +33,10 @@ public class RemoteClient implements RemoteClientInterface, Serializable {
 	
     public static void main(String[] args) {
         String host = (args.length < 1) ? null : args[0];
+        int port = (args.length < 2) ? 1091 : Integer.parseInt(args[1]);
         try {
         	RemoteClient self = new RemoteClient();
-        	Registry registry = LocateRegistry.getRegistry(host);
-        	/*
-        	Registry registry;
-        	if (args.length < 2) {
-        		registry = LocateRegistry.getRegistry(host);
-        	} else {
-        		int port = Integer.parseInt(args[1]);
-        		registry = LocateRegistry.getRegistry(host, port);
-        	}
-        	*/
+        	Registry registry = LocateRegistry.getRegistry(host, port);
             RemoteServerInterface stub = (RemoteServerInterface) registry.lookup("RemoteServerInterface");
             self.setClient(stub);
             stub.repererClient(self);
@@ -63,5 +65,10 @@ public class RemoteClient implements RemoteClientInterface, Serializable {
 	@Override
 	public void changerRang(Rang r) throws RemoteException {
 		this.client.rang = r;
+	}
+
+	@Override
+	public void recevoirPartageTableau(String n, Ustandard u) throws RemoteException {
+		client.recevoirPartageTableau(n, u);
 	}
 }

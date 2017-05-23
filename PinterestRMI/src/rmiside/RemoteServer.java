@@ -12,6 +12,15 @@ import pinterest.Tableau;
 import serveur.Serveur;
 import utilisateurs.Ustandard;
 
+/**
+ * Implementation du serveur RMI de notre projet.
+ * Le port utilise par defaut est 1091.
+ * 
+ * Les informations sur l'identite des utilisateurs sont recuperees par le serveur a
+ * leur instanciation, via la methode repererClient.
+ * 
+ * Voir l'interface correspondante pour quelques remarques de plus a propos des methodes.
+ */
 public class RemoteServer implements RemoteServerInterface {
 	private Serveur serveur;
 	
@@ -20,10 +29,11 @@ public class RemoteServer implements RemoteServerInterface {
 	}
 	
 	public static void main(String args[]) {
-        try {
+		int port = (args.length < 1) ? 1091 : Integer.parseInt(args[0]);
+		try {
             RemoteServer self = new RemoteServer();
             RemoteServerInterface stub = (RemoteServerInterface) UnicastRemoteObject.exportObject(self, 0);
-            Registry registry = LocateRegistry.getRegistry();
+            Registry registry = LocateRegistry.getRegistry(port);
             registry.bind("RemoteServerInterface", stub);
             System.err.println("Server ready");
             self.serveur.run();
@@ -32,11 +42,6 @@ public class RemoteServer implements RemoteServerInterface {
             e.printStackTrace();
         }
     }
-
-	@Override
-	public String check() {
-		return "* Serveur OK *";
-	}
 
 	@Override
 	public void repererClient(RemoteClientInterface u) {
@@ -64,9 +69,12 @@ public class RemoteServer implements RemoteServerInterface {
 	}
 
 	@Override
-	public void validerPartageTableau(Tableau t, Ustandard u) {
-		serveur.enregistrerChangements(u);
-		System.out.println("Le serveur valide le partage du tableau " + t.nom + " de " + t.createur.nom + " avec "+u.nom);
+	public void validerPartageTableau(Tableau t, Ustandard uC, Ustandard uR) throws RemoteException {
+		RemoteClientInterface receveur = serveur.donnerClient(uR);
+		receveur.recevoirPartageTableau(t.nom, uC);
+		t.administrateurs.add(uR);
+		serveur.enregistrerChangements(uC);
+		System.out.println("Le serveur valide le partage du tableau " + t.nom + " de " + uC.nom + " avec "+uR.nom);
 	}
 
 	@Override
@@ -110,12 +118,12 @@ public class RemoteServer implements RemoteServerInterface {
 	}
 
 	@Override
-	public void synchroniser(Ustandard u) throws RemoteException {
-		this.serveur.synchroniser(u);
+	public Tableau donnerTableau(String nom) throws RemoteException {
+		return this.serveur.tableaux.get(nom);
 	}
 
 	@Override
-	public Tableau donnerTableau(String nom) throws RemoteException {
-		return this.serveur.tableaux.get(nom);
+	public void synchroniser(Ustandard u) throws RemoteException {
+		this.serveur.synchroniser(u);
 	}
 }

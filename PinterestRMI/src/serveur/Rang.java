@@ -1,5 +1,8 @@
 package serveur;
 
+/**
+ * Simple classe d'enumeration regroupant les differents rangs accessibles aux utilisateurs de Pinterest.
+ */
 public enum Rang {
 	NOUVEAU, INTERMITTENT, FIDELE, HABITUE, INITIE, EXPERT;
 	

@@ -12,6 +12,8 @@ import serveur.Rang;
  * Classe abstraite representant le comportement de base des utilisateurs : se connecter et se
  * deconnecter, et agir en consequence.
  * C'est elle qui implemente l'interface Runnable et qui possede donc le code de la methode run().
+ * Tout utilisateur possede un nom, un rang, et des informations a propos de ses tableaux et de ses epingles
+ * (nom ou numero, sous forme de liste).
  */
 public abstract class Utilisateur implements Serializable, Runnable {
 	/**

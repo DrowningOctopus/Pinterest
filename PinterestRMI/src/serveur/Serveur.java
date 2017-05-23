@@ -12,7 +12,11 @@ import utilisateurs.Utilisateur;
 
 /**
  * Classe representant le serveur de Pinterest.
- * C'est elle qui garde en memoire l'etat des utilisateurs et des epingles.
+ * C'est elle qui garde en memoire l'etat des utilisateurs, des tableaux et des epingles.
+ * 
+ * Sa methode run le fait agir de temps en temps, soit pour choisir de mettre en premiere
+ * page le tableau le plus celebre d'un utilisateur au hasard, soit pour modifier le rang
+ * d'un utilisateur.
  */
 public class Serveur {
 	public int nbEpingle = 0;
@@ -34,11 +38,19 @@ public class Serveur {
 		System.out.println("Le serveur enregistre le changement effectue par "+ u.nom);
 	}
 	
+	public RemoteClientInterface donnerClient(Ustandard u) throws RemoteException {
+		int i = 0;
+		while (i < utilisateurs.size() && !u.nom.equals(utilisateurs.get(i).donnerClient().nom)) {
+			i++;
+		}
+		return utilisateurs.get(i);
+	}
+	
 	public void run() throws RemoteException{
 		double v;
 		while (true) {
 			v = Math.random();
-			if (utilisateurs.size() > 0 && v < 0.1) {
+			if (utilisateurs.size() > 0 && v < 0.5) {
 				int idUser = (int)(Math.random()*utilisateurs.size());
 				Ustandard u = utilisateurs.get(idUser).donnerClient();
 				String tNom = u.donnerTableauCelebre();
@@ -47,7 +59,7 @@ public class Serveur {
 				} else {
 					System.out.println("Le serveur met en premiere page le tableau le plus celebre de "+u.nom+" : "+tNom);
 				}
-			} else if (utilisateurs.size() > 0 && v < 0.2) {
+			} else if (utilisateurs.size() > 0) {
 				int idUser = (int)(Math.random()*utilisateurs.size());
 				Ustandard u = utilisateurs.get(idUser).donnerClient();
 				Rang rang = u.rang.changer();
@@ -55,7 +67,7 @@ public class Serveur {
 				u.rang = rang;
 			}
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

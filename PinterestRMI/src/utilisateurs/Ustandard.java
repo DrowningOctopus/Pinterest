@@ -10,8 +10,8 @@ import pinterest.Tableau;
 /**
  * Utilisateur standard du reseau social.
  * Il peut creer et modifier des tableaux, creer des epingles, ajouter et retirer des epingles
- * de ses tableaux, partager ses tableaux avec d'autres utilisateurs standards et envoyer des
- * messages a d'autres utilisateurs standards.
+ * de ses tableaux, partager ses tableaux avec d'autres utilisateurs standards et parcourir son
+ * fil d'actualite.
  */
 public class Ustandard extends Utilisateur {
 	/**
@@ -70,13 +70,16 @@ public class Ustandard extends Utilisateur {
 	
 	private void partagerTableau(Tableau t, Ustandard u) {
 		try {
-			u.tableaux.add(t.nom);
-			t.administrateurs.add(u);
-			this.serveur.validerPartageTableau(t, u);
+			this.serveur.validerPartageTableau(t, this, u);
 			System.out.println(this.nom+" partage le tableau "+t.nom+" avec "+u.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void recevoirPartageTableau(String n, Ustandard u) {
+		tableaux.add(n);
+		System.out.println(this.nom+" recoit les droits du tableau "+n+" de "+u.nom);
 	}
 	
 	/* Methodes d'epingles */
@@ -88,7 +91,6 @@ public class Ustandard extends Utilisateur {
 			if (this.tableaux.size() > 0 && (int)(Math.random()*2) == 0) {
 				int numT = (int)(Math.random()*this.tableaux.size());
 				String nomT = this.tableaux.get(numT);
-				//t.ajouterEpingle(e);
 				this.serveur.donnerTableau(nomT).ajouterEpingle(e);
 				System.out.println(this.nom+" ajoute l'epingle "+numE+" au tableau "+nomT);
 				this.serveur.validerAjoutEpingle(e, this.serveur.donnerTableau(nomT), this);
@@ -124,26 +126,21 @@ public class Ustandard extends Utilisateur {
 	
 	/**
 	 * L'utilisateur a le choix entre diverses actions :
+	 * - se deconnecter
 	 * - creer une epingle
 	 * - creer un tableau
 	 * - modifier un tableau
 	 * - partager un tableau avec quelqu'un
 	 * - ajouter une epingle a un tableau
 	 * - supprimer une epingle d'un tableau
-	 * - se deconnecter
-	 * - envoyer un message a quelqu'un
-	 * - parcourir son fil
+	 * - parcourir son fil d'actualites
 	 */
 	public void agir() {
 		try {
-			int i = (int)(Math.random()*100);
 			if (!connecte) {
-				if (i < 50) {
-					this.connecter();
-				} else {
-					System.out.println(this.nom+" n'est pas connecte sur Pinterest");
-				}
+				this.connecter();
 			} else {
+				int i = (int)(Math.random()*100);
 				if (i < 5) {
 					this.deconnecter();
 				} else if(i < 20) {
