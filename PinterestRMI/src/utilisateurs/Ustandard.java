@@ -74,7 +74,7 @@ public class Ustandard extends Utilisateur {
 			u.tableaux.add(t);
 			t.administrateurs.add(u);
 			this.serveur.validerPartageTableau(t, u);
-			System.out.println(this.nom+" partage le tableau numero "+t.numero+" (nouveau nom : "+t.nom+")");
+			System.out.println(this.nom+" partage le tableau numero "+t.numero+" (nom : "+t.nom+")");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -139,7 +139,7 @@ public class Ustandard extends Utilisateur {
 				if (i < 50) {
 					this.connecter();
 				} else {
-					System.out.println(this.nom+" est inactif sur Pinterest.");
+					System.out.println(this.nom+" est inactif sur Pinterest");
 				}
 			} else {
 				if(i < 15) {
