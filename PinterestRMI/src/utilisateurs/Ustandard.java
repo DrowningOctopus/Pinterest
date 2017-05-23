@@ -74,7 +74,7 @@ public class Ustandard extends Utilisateur {
 			u.tableaux.add(t);
 			t.administrateurs.add(u);
 			this.serveur.validerPartageTableau(t, u);
-			System.out.println(this.nom+" partage le tableau numero "+t.numero+" (nom : "+t.nom+")");
+			System.out.println(this.nom+" partage le tableau numero "+t.numero+" (nom : "+t.nom+") avec "+u.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
