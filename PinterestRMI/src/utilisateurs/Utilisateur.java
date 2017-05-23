@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import pinterest.Epingle;
-import rmiside.RemoteInterface;
+import rmiside.RemoteServerInterface;
 
 /**
  * Classe abstraite representant le comportement de base des utilisateurs : se connecter et se
@@ -18,14 +18,14 @@ public abstract class Utilisateur implements Remote, Serializable, Runnable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public RemoteInterface serveur;
+	public RemoteServerInterface serveur;
 	public String nom;
 	ArrayList<String> tableaux = new ArrayList<String>();
 	ArrayList<Epingle> epinglesCreees = new ArrayList<Epingle>();
 	public boolean connecte = false;
 	public boolean actif = true;
 	
-	public Utilisateur(RemoteInterface s, String nom) throws RemoteException {
+	public Utilisateur(RemoteServerInterface s, String nom) throws RemoteException {
 		this.nom = nom;
 		this.serveur = s;
 	}

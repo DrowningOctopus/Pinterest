@@ -3,7 +3,7 @@ package utilisateurs;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import rmiside.RemoteInterface;
+import rmiside.RemoteServerInterface;
 import pinterest.Epingle;
 import pinterest.Tableau;
 
@@ -19,11 +19,11 @@ public class Ustandard extends Utilisateur {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public Ustandard(RemoteInterface s, String nom) throws RemoteException {
+	public Ustandard(RemoteServerInterface s, String nom) throws RemoteException {
 		super(s, nom);
 	}
 
-	public Ustandard(RemoteInterface s) throws RemoteException {
+	public Ustandard(RemoteServerInterface s) throws RemoteException {
 		super(s, "");
 		String choix = "abcdefghijklmnopqrstuvwxyz";
         int longueur = (int)(Math.random()*3+1);

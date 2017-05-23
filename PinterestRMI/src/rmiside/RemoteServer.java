@@ -12,7 +12,7 @@ import pinterest.Tableau;
 import serveur.Serveur;
 import utilisateurs.Ustandard;
 
-public class RemoteServer implements RemoteInterface {
+public class RemoteServer implements RemoteServerInterface {
 	private Serveur serveur;
 	
 	public RemoteServer() {
@@ -22,7 +22,7 @@ public class RemoteServer implements RemoteInterface {
 	public static void main(String args[]) {
         try {
             RemoteServer self = new RemoteServer();
-            RemoteInterface stub = (RemoteInterface) UnicastRemoteObject.exportObject(self, 0);
+            RemoteServerInterface stub = (RemoteServerInterface) UnicastRemoteObject.exportObject(self, 0);
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("RemoteInterface", stub);
             System.err.println("Server ready");

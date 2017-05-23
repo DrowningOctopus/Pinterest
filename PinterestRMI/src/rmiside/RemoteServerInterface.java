@@ -20,7 +20,7 @@ Remote, pour pouvoir par exemple transmettre son attribut client ?
 Question : faut-il garder le cote thread / runnable ou le supprimer ??
 */
 
-public interface RemoteInterface extends Remote {
+public interface RemoteServerInterface extends Remote {
 	public String check() throws RemoteException;
 	public void repererClient(Ustandard u) throws RemoteException;
 	
