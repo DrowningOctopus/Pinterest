@@ -6,6 +6,7 @@ import java.rmi.registry.Registry;
 
 import utilisateurs.Ustandard;
 import rmiside.RemoteServerInterface;
+import serveur.Rang;
 
 public class RemoteClient implements RemoteClientInterface {
 	private Ustandard client;
@@ -25,7 +26,7 @@ public class RemoteClient implements RemoteClientInterface {
             Registry registry = LocateRegistry.getRegistry(host);
             RemoteServerInterface stub = (RemoteServerInterface) registry.lookup("RemoteInterface");
             self.setClient(stub);
-            stub.repererClient(self.client);
+            stub.repererClient(self);
             // bad practice
             /*while (true) {
             	self.client.agir();
@@ -38,17 +39,22 @@ public class RemoteClient implements RemoteClientInterface {
     }
 
 	@Override
+	public Ustandard donnerClient() throws RemoteException {
+		return client;
+	}
+
+	@Override
 	public String donnerNomTableauLePlusCelebre() throws RemoteException {
 		return this.client.donnerTableauCelebre();
 	}
 
 	@Override
-	public String donnerRang() throws RemoteException {
+	public Rang donnerRang() throws RemoteException {
 		return this.client.rang;
 	}
 
 	@Override
-	public void changerRang(String r) throws RemoteException {
+	public void changerRang(Rang r) throws RemoteException {
 		this.client.rang = r;
 	}
 }

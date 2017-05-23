@@ -1,19 +1,19 @@
 package utilisateurs;
 
 import java.io.Serializable;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import pinterest.Epingle;
 import rmiside.RemoteServerInterface;
+import serveur.Rang;
 
 /**
  * Classe abstraite representant le comportement de base des utilisateurs : se connecter et se
  * deconnecter, et agir en consequence.
  * C'est elle qui implemente l'interface Runnable et qui possede donc le code de la methode run().
  */
-public abstract class Utilisateur implements Remote, Serializable, Runnable {
+public abstract class Utilisateur implements Serializable, Runnable {
 	/**
 	 * 
 	 */
@@ -24,7 +24,7 @@ public abstract class Utilisateur implements Remote, Serializable, Runnable {
 	ArrayList<Epingle> epinglesCreees = new ArrayList<Epingle>();
 	public boolean connecte = false;
 	public boolean actif = true;
-	public String rang;
+	public Rang rang;
 	
 	public Utilisateur(RemoteServerInterface s, String nom) throws RemoteException {
 		this.nom = nom;
@@ -62,7 +62,7 @@ public abstract class Utilisateur implements Remote, Serializable, Runnable {
 					}
 				} else {
 					try {
-						Thread.sleep((int)(Math.random()*5000));
+						Thread.sleep((int)(Math.random()*2000));
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -75,8 +75,6 @@ public abstract class Utilisateur implements Remote, Serializable, Runnable {
 					e.printStackTrace();
 				}
 			}
-			
 		}
 	}
-		
 }

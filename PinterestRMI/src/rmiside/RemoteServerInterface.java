@@ -22,7 +22,7 @@ Question : faut-il garder le cote thread / runnable ou le supprimer ??
 
 public interface RemoteServerInterface extends Remote {
 	public String check() throws RemoteException;
-	public void repererClient(Ustandard u) throws RemoteException;
+	public void repererClient(RemoteClientInterface u) throws RemoteException;
 	
 	public void synchroniser(Ustandard u) throws RemoteException;
 	public void validerCreationTableau(Tableau t, Ustandard u) throws RemoteException;

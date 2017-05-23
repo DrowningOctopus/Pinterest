@@ -1,10 +1,12 @@
 package serveur;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import pinterest.Epingle;
 import pinterest.Tableau;
+import rmiside.RemoteClientInterface;
 import utilisateurs.Ustandard;
 import utilisateurs.Utilisateur;
 
@@ -14,11 +16,11 @@ import utilisateurs.Utilisateur;
  */
 public class Serveur {
 	public int nbEpingle = 0;
-	public ArrayList<Ustandard> utilisateurs;
+	public ArrayList<RemoteClientInterface> utilisateurs;
 	public ArrayList<Epingle> epingles;
 	public HashMap<String, Tableau> tableaux;
 	
-	public Serveur(ArrayList<Ustandard> u, ArrayList<Epingle> e, HashMap<String, Tableau> t) {
+	public Serveur(ArrayList<RemoteClientInterface> u, ArrayList<Epingle> e, HashMap<String, Tableau> t) {
 		this.epingles = e;
 		this.utilisateurs = u;
 		this.tableaux = t;
@@ -30,5 +32,27 @@ public class Serveur {
 	
 	public void enregistrerChangements(Utilisateur u) {
 		System.out.println("Le serveur enregistre le changement effectue par "+ u.nom);
-	}	
+	}
+	
+	public void run() throws RemoteException{
+		double v;
+		while (true) {
+			v = Math.random();
+			if (v < 0.1) {
+				int idUser = (int)(Math.random()*utilisateurs.size());
+				Ustandard u = utilisateurs.get(idUser).donnerClient();
+				System.out.println("Le serveur met en premiere page le tableau le plus celebre de "+u.nom+" : "+u.donnerTableauCelebre());
+			} else if (v < 0.2) {
+				int idUser = (int)(Math.random()*utilisateurs.size());
+				Ustandard u = utilisateurs.get(idUser).donnerClient();
+				Rang rang = u.rang.changer();
+				System.out.println("Le serveur change le rang de "+u.nom+" de "+u.rang+" a "+rang);
+			}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

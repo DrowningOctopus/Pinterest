@@ -16,7 +16,7 @@ public class RemoteServer implements RemoteServerInterface {
 	private Serveur serveur;
 	
 	public RemoteServer() {
-		serveur = new Serveur(new ArrayList<Ustandard>(), new ArrayList<Epingle>(), new HashMap<String, Tableau>());
+		serveur = new Serveur(new ArrayList<RemoteClientInterface>(), new ArrayList<Epingle>(), new HashMap<String, Tableau>());
 	}
 	
 	public static void main(String args[]) {
@@ -26,6 +26,7 @@ public class RemoteServer implements RemoteServerInterface {
             Registry registry = LocateRegistry.getRegistry();
             registry.bind("RemoteInterface", stub);
             System.err.println("Server ready");
+            self.serveur.run();
         } catch (Exception e) {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class RemoteServer implements RemoteServerInterface {
 	}
 
 	@Override
-	public void repererClient(Ustandard u) {
+	public void repererClient(RemoteClientInterface u) {
 		System.out.println("reperons le client");
 		System.out.println("serveur : "+serveur);
 		System.out.println("serveur.utilisateurs : "+serveur.utilisateurs);
@@ -101,7 +102,7 @@ public class RemoteServer implements RemoteServerInterface {
 
 	@Override
 	public Ustandard donnerUtilisateur(int i) throws RemoteException {
-		return serveur.utilisateurs.get(i);
+		return serveur.utilisateurs.get(i).donnerClient();
 	}
 
 	@Override
