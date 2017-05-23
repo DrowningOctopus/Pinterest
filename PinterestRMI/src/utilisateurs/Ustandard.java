@@ -140,7 +140,7 @@ public class Ustandard extends Utilisateur {
 				if (i < 50) {
 					this.connecter();
 				} else {
-					System.out.println(this.nom+" est inactif sur Pinterest");
+					System.out.println(this.nom+" n'est pas connecte sur Pinterest");
 				}
 			} else {
 				if (i < 5) {
@@ -155,7 +155,7 @@ public class Ustandard extends Utilisateur {
 					int idUser = (int)(Math.random()*this.serveur.donnerNbUtilisateurs());
 					Tableau t = this.tableaux.get((int)(Math.random()*this.tableaux.size()));
 					Ustandard u = this.serveur.donnerUtilisateur(idUser);
-					if (!t.administrateurs.contains(u)) {
+					if (!t.estDejaAdministrePar(u)) {
 						this.partagerTableau(t, u);
 					}
 				} else if (i < 80 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {

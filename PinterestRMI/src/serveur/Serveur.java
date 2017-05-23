@@ -1,8 +1,10 @@
 package serveur;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import pinterest.Epingle;
+import pinterest.Tableau;
 import utilisateurs.Ustandard;
 import utilisateurs.Utilisateur;
 
@@ -14,10 +16,12 @@ public class Serveur {
 	public int nbEpingle = 0;
 	public ArrayList<Ustandard> utilisateurs;
 	public ArrayList<Epingle> epingles;
+	public HashMap<String, Tableau> tableaux;
 	
-	public Serveur(ArrayList<Ustandard> u, ArrayList<Epingle> e) {
+	public Serveur(ArrayList<Ustandard> u, ArrayList<Epingle> e, HashMap<String, Tableau> t) {
 		this.epingles = e;
 		this.utilisateurs = u;
+		this.tableaux = t;
 	}
 	
 	public void synchroniser(Utilisateur u) {

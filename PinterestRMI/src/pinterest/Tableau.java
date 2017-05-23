@@ -43,4 +43,14 @@ public class Tableau implements Remote, Serializable {
         }
         this.nom = nom;
 	}
+	
+	public boolean estDejaAdministrePar(Ustandard u) {
+		boolean resu = false;
+		int i = 0;
+		while (!resu && i < this.administrateurs.size()) {
+			resu = this.administrateurs.get(i).nom.equals(u.nom);
+			i++;
+		}
+		return resu;
+	}
 }
