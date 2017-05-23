@@ -24,6 +24,7 @@ public abstract class Utilisateur implements Remote, Serializable, Runnable {
 	ArrayList<Epingle> epinglesCreees = new ArrayList<Epingle>();
 	public boolean connecte = false;
 	public boolean actif = true;
+	public String rang;
 	
 	public Utilisateur(RemoteServerInterface s, String nom) throws RemoteException {
 		this.nom = nom;
@@ -40,6 +41,11 @@ public abstract class Utilisateur implements Remote, Serializable, Runnable {
 		System.out.println(this.nom +" se deconnecte");
 		this.connecte = false;
 		notifyAll();
+	}
+	
+	public String donnerTableauCelebre() {
+		int idTableau = (int)(Math.random()*this.tableaux.size());
+		return this.tableaux.get(idTableau);
 	}
 	
 	public abstract void agir() throws RemoteException;
