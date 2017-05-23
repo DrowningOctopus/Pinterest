@@ -26,7 +26,7 @@ public class Ustandard extends Utilisateur {
 
 	public Ustandard(RemoteInterface s) throws RemoteException {
 		super(s, "");
-		String choix = "abcdefghijklmnopqrstuvwxyz1234567890";
+		String choix = "abcdefghijklmnopqrstuvwxyz";
         int longueur = (int)(Math.random()*7+1);
         String nom = "";
         for (int i = 0 ; i < longueur ; i++) {
