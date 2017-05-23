@@ -27,11 +27,11 @@ public class Ustandard extends Utilisateur {
 	public Ustandard(RemoteInterface s) throws RemoteException {
 		super(s, "");
 		String choix = "abcdefghijklmnopqrstuvwxyz";
-        int longueur = (int)(Math.random()*7+1);
+        int longueur = (int)(Math.random()*3+1);
         String nom = "";
         for (int i = 0 ; i < longueur ; i++) {
             int index = (int) (Math.random() * choix.length());
-            nom += choix.charAt(index);
+            nom += choix.charAt(index)+".";
         }
         this.nom = nom.toUpperCase();
 	}
