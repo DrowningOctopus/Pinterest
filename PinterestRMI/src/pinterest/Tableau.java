@@ -11,15 +11,12 @@ import utilisateurs.Ustandard;
  */
 public class Tableau implements Remote, Serializable {
 	private static final long serialVersionUID = 1L;
-	public int numero;
 	public String nom;
 	public Ustandard createur;
 	public ArrayList<Ustandard> administrateurs;
 	public ArrayList<Epingle> epingles;
 	
-	public Tableau(int num, String n, Ustandard c, ArrayList<Ustandard> m, ArrayList<Epingle> e) {
-		this.numero = num;
-		this.nom = n;
+	public Tableau(Ustandard c, ArrayList<Ustandard> m, ArrayList<Epingle> e) {
 		this.createur = c;
 		this.administrateurs = m;
 		this.epingles = e;
