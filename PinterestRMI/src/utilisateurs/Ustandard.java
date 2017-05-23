@@ -73,6 +73,7 @@ public class Ustandard extends Utilisateur {
 		try {
 			u.tableaux.add(t);
 			t.administrateurs.add(u);
+			u.nbTableaux++;
 			this.serveur.validerPartageTableau(t, u);
 			System.out.println(this.nom+" partage le tableau numero "+t.numero+" (nom : "+t.nom+") avec "+u.nom+" (avec le numero "+(u.nbTableaux-1)+")");
 		} catch (RemoteException e) {
@@ -142,26 +143,28 @@ public class Ustandard extends Utilisateur {
 					System.out.println(this.nom+" est inactif sur Pinterest");
 				}
 			} else {
-				if(i < 15) {
+				if (i < 5) {
+					this.deconnecter();
+				} else if(i < 20) {
 					this.creerEpingle();
-				} else if (i < 20) {
+				} else if (i < 35) {
 					this.creerTableau();
-				} else if (i < 25 && this.tableaux.size() > 0) {
+				} else if (i < 45 && this.tableaux.size() > 0) {
 					this.modifierTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())));
-				} else if (i < 30 && this.tableaux.size() > 0 && this.serveur.donnerNbUtilisateurs() > 1) {
+				} else if (i < 60 && this.tableaux.size() > 0 && this.serveur.donnerNbUtilisateurs() > 1) {
 					int idUser = (int)(Math.random()*this.serveur.donnerNbUtilisateurs());
-					if (! this.serveur.donnerUtilisateur(idUser).equals(this)) {
-						this.partagerTableau(this.tableaux.get((int)(Math.random()*this.tableaux.size())), this.serveur.donnerUtilisateur(idUser));
+					Tableau t = this.tableaux.get((int)(Math.random()*this.tableaux.size()));
+					Ustandard u = this.serveur.donnerUtilisateur(idUser);
+					if (!t.administrateurs.contains(u)) {
+						this.partagerTableau(t, u);
 					}
-				} else if (i < 45 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
+				} else if (i < 80 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
 					this.ajouterEpingle(this.serveur.donnerEpingle((int)(Math.random()*this.serveur.donnerNbEpingles())), this.tableaux.get((int)(Math.random()*this.tableaux.size())));
-				} else if (i < 50 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
+				} else if (i < 90 && this.serveur.donnerNbEpingles() > 0 && this.tableaux.size() > 0) {
 					int t = (int)(Math.random()*this.tableaux.size());
 					if (this.tableaux.get(t).epingles.size() > 0) {
 						this.supprimerEpingle(this.tableaux.get(t).epingles.get((int)(Math.random()*this.tableaux.get(t).epingles.size())), this.tableaux.get(t));
 					}
-				} else if (i < 60) {
-					this.deconnecter();
 				} else {
 					this.parcourirFil();
 				}
