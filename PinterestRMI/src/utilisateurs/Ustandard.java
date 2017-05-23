@@ -90,6 +90,7 @@ public class Ustandard extends Utilisateur {
 				int numT = (int)(Math.random()*this.tableaux.size());
 				Tableau t = this.tableaux.get(numT);
 				t.ajouterEpingle(e);
+				System.out.println(this.nom+" ajoute l'epingle "+numE+" au tableau "+t.nom+" ("+t.numero+")");
 				this.serveur.validerAjoutEpingle(e, t, this);
 			}
 			this.epinglesCreees.add(e);
@@ -138,7 +139,7 @@ public class Ustandard extends Utilisateur {
 				if (i < 50) {
 					this.connecter();
 				} else {
-					System.out.println(this.nom+" attend.");
+					System.out.println(this.nom+" est inactif sur Pinterest.");
 				}
 			} else {
 				if(i < 15) {
