@@ -21,7 +21,7 @@ public abstract class Utilisateur implements Remote, Serializable, Runnable {
 	private static final long serialVersionUID = 1L;
 	public RemoteInterface serveur;
 	public String nom;
-	ArrayList<Tableau> tableaux = new ArrayList<Tableau>();
+	ArrayList<String> tableaux = new ArrayList<String>();
 	ArrayList<Epingle> epinglesCreees = new ArrayList<Epingle>();
 	public boolean connecte = false;
 	public boolean actif = true;

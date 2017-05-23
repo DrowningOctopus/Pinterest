@@ -18,7 +18,6 @@ public class Ustandard extends Utilisateur {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int nbTableaux = 0;
 	
 	public Ustandard(RemoteInterface s, String nom) throws RemoteException {
 		super(s, nom);
@@ -49,11 +48,10 @@ public class Ustandard extends Utilisateur {
 	private void creerTableau() {
 		try {
 			Tableau t = new Tableau(this, new ArrayList<Ustandard>(), new ArrayList<Epingle>());
-			this.nbTableaux++;
 			this.tableaux.add(t);
 			t.administrateurs.add(this);
 			this.serveur.validerCreationTableau(t, this);
-			System.out.println(this.nom+" cree le tableau numero 'YOLO'"+" (nom : "+t.nom+")");
+			System.out.println(this.nom+" cree le tableau "+t.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -63,7 +61,7 @@ public class Ustandard extends Utilisateur {
 		try {
 			t.modifierNom();
 			this.serveur.validerModificationTableau(t, t.nom, this);
-			System.out.println(this.nom+" modifie le tableau numero 'YOLO'"+" (nouveau nom : "+t.nom+")");
+			System.out.println(this.nom+" renomme son tableau en "+t.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -73,9 +71,8 @@ public class Ustandard extends Utilisateur {
 		try {
 			u.tableaux.add(t);
 			t.administrateurs.add(u);
-			u.nbTableaux++;
 			this.serveur.validerPartageTableau(t, u);
-			System.out.println(this.nom+" partage le tableau numero 'YOLO'"+" (nom : "+t.nom+") avec "+u.nom+" (avec le numero "+(u.nbTableaux-1)+")");
+			System.out.println(this.nom+" partage le tableau "+t.nom+" avec "+u.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -91,7 +88,7 @@ public class Ustandard extends Utilisateur {
 				int numT = (int)(Math.random()*this.tableaux.size());
 				Tableau t = this.tableaux.get(numT);
 				t.ajouterEpingle(e);
-				System.out.println(this.nom+" ajoute l'epingle "+numE+" au tableau "+t.nom+" ('YOLO')");
+				System.out.println(this.nom+" ajoute l'epingle "+numE+" au tableau "+t.nom);
 				this.serveur.validerAjoutEpingle(e, t, this);
 			}
 			this.epinglesCreees.add(e);
@@ -105,7 +102,7 @@ public class Ustandard extends Utilisateur {
 		try {
 			t.epingles.add(ep);
 			this.serveur.validerAjoutEpingle(ep, t, this);
-			System.out.println(this.nom+" ajoute l'epingle "+ep.numero+" au tableau "+t.nom+" ('YOLO')");
+			System.out.println(this.nom+" ajoute l'epingle "+ep.numero+" au tableau "+t.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -115,7 +112,7 @@ public class Ustandard extends Utilisateur {
 		try {
 			t.epingles.remove(ep);
 			this.serveur.validerSuppressionEpingle(ep, t, this);
-			System.out.println(this.nom+" supprime l'epingle "+ep.numero+" du tableau "+t.nom+" ('YOLO')");
+			System.out.println(this.nom+" supprime l'epingle "+ep.numero+" du tableau "+t.nom);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
